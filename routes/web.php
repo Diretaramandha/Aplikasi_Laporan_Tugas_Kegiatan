@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.dashboard');
+    return redirect('/sign-in');
 });
-Route::get('/', function () {
-    return view('pages.');
+Route::get('/sign-in', function () {
+    return view('pages.sign-in');
+});
+Route::post('/auth',[AuthController::class,'auth_user']);
+Route::get('/logout',[AuthController::class,'logout_user']);
+Route::middleware('login')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+    });
 });

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AddUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,11 @@ Route::get('/sign-in', function () {
 Route::post('/auth',[AuthController::class,'auth_user']);
 Route::get('/logout',[AuthController::class,'logout_user']);
 Route::middleware('login')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-    });
+    Route::get('/dashboard',[ViewController::class,'view_dashboard']);
+    Route::get('/tables',[ViewController::class,'view_tables']);
+    Route::get('/add-user',[ViewController::class,'view_add_user']);
+    Route::get('/add-user/create',[ViewController::class,'view_user_create']);
+
+    Route::post('/add-user',[AddUserController::class,'user_search']);
+    Route::post('/add-user/create',[AddUserController::class,'user_create']);
 });

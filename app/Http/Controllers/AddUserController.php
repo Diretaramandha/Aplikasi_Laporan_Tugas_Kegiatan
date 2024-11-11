@@ -7,22 +7,23 @@ use Illuminate\Http\Request;
 
 class AddUserController extends Controller
 {
-    // public function user_search(Request $request){
-    //     $request->validate([
-    //         'search' => ['required','string','max:255']
-    //     ]);
+    // ... inside AddUser Controller
+    public function user_search(Request $request)
+    {
+        $search = $request->input('search');
 
-    //     // $search = $request->input('search');
+        $data['users'] = User::where('name', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')
+            ->get();
 
-    //     $data['users'] = User::where('level','LIKE','%'.$request->search.'%')->get();
-
-    //     return redirect('/add-user',$data);
-    // }
-    public function user_create(Request $request){
+        return view('pages.user', $data);
+    }
+    public function user_create(Request $request)
+    {
         $create = $request->validate([
             'name' => ['required'],
             'username' => ['required'],
-            'email' => ['required','email'],
+            'email' => ['required', 'email'],
             'nohp' => ['required'],
             'address' => ['required'],
             'password' => ['required'],
@@ -40,6 +41,6 @@ class AddUserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect('/add-user');
+        return redirect('/user');
     }
 }

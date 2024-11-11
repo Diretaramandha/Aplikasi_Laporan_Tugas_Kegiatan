@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,14 +23,24 @@ Route::get('/', function () {
 Route::get('/sign-in', function () {
     return view('pages.sign-in');
 });
+
 Route::post('/auth',[AuthController::class,'auth_user']);
 Route::get('/logout',[AuthController::class,'logout_user']);
+
 Route::middleware('login')->group(function () {
     Route::get('/dashboard',[ViewController::class,'view_dashboard']);
     Route::get('/tables',[ViewController::class,'view_tables']);
-    Route::get('/add-user',[ViewController::class,'view_add_user']);
-    Route::get('/add-user/create',[ViewController::class,'view_user_create']);
 
-    Route::post('/add-user',[AddUserController::class,'user_search']);
-    Route::post('/add-user/create',[AddUserController::class,'user_create']);
+    Route::get('/user',[ViewController::class,'view_user']);
+    Route::get('/user/create',[ViewController::class,'view_user_create']);
+    Route::get('/user/update/{id}',[ViewController::class,'view_user_update']);
+
+    Route::get('/event',[ViewController::class,'view_event']);
+    Route::get('/event/create',[ViewController::class,'view_event_create']);
+
+    Route::post('/user', [AddUserController::class, 'user_search']);
+    Route::post('/user/create',[AddUserController::class,'user_create']);
+    Route::post('/user/edit',[AddUserController::class,'user_create']);
+
+    Route::post('/event/create',[EventController::class,'event_create']);
 });

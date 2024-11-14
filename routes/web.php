@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +39,13 @@ Route::middleware('login')->group(function () {
     Route::get('/event',[ViewController::class,'view_event']);
     Route::get('/event/create',[ViewController::class,'view_event_create']);
 
+    Route::get('/task/{id}',[ViewController::class,'view_task_create']);
+
     Route::post('/user', [AddUserController::class, 'user_search']);
     Route::post('/user/create',[AddUserController::class,'user_create']);
     Route::post('/user/edit',[AddUserController::class,'user_create']);
 
     Route::post('/event/create',[EventController::class,'event_create']);
+
+    Route::post('/task/{id}',[TaskController::class,'task_create']);
 });

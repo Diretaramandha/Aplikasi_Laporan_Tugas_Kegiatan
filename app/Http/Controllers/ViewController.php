@@ -23,8 +23,9 @@ class ViewController extends Controller
         // $data['users'] = User::all();
         return view("pages.user.create");
     }
-    public function view_user_update(Request $request){
-        return view("pages.user.update");
+    public function view_user_update($id){
+        $data['user'] = User::where('id',$id)->first();
+        return view("pages.user.update",$data);
     }
 
     public function view_event(){
@@ -34,5 +35,10 @@ class ViewController extends Controller
     public function view_event_create(){
         // $data['events'] = Event::all();
         return view("pages.event.create",);
+    }
+
+    public function view_task_create($id){
+        $data['event'] = Event::where('id',$id)->first();
+        return view('pages.Task.create',$data);
     }
 }

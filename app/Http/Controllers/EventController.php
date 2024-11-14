@@ -24,6 +24,6 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->save();
 
-        return redirect('/event/task/'. $event->id);
+        return redirect('/task/'. $event->id);
     }
 }

@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="card-body px-0 py-0">
-                        <form action="/add-user/create" method="post">
+                        <form action="/user/create" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-12 px-5 py-2 pt-4">
@@ -94,14 +94,14 @@
                                     <label for="name">Address</label>
                                     <textarea name="address" id="" cols="30" rows="5" placeholder="Enter Address" class="form-control"></textarea>
                                 </div>
-                                {{-- <div class="col-12 px-5 py-2">
+                                <div class="col-12 px-5 py-2">
                                     <label for="name">Status</label>
-                                    <select name="level" id="" class="form-select" >
+                                    <select name="level" id="" class="form-select">
                                         <option value="" class="text-secondary"></option>
                                         <option value="admin">Admin</option>
                                         <option value="member">Member</option>
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">Password</label>
                                     <input type="password" name="password" id="" class="form-control" placeholder="Enter Password">

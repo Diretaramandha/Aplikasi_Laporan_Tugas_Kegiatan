@@ -80,31 +80,30 @@
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">Username</label>
-                                    <input type="text" name="username" id="" class="form-control" placeholder="Enter Username">
+                                    <input type="text" name="username" id="" class="form-control" placeholder="Enter Username" value="{{ $user->username }}">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">Email</label>
-                                    <input type="email" name="email" id="" class="form-control" placeholder="Enter Email">
+                                    <input type="email" name="email" id="" class="form-control" placeholder="Enter Email" value="{{ $user->email }}">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">No.Tel</label>
-                                    <input type="text" name="nohp" id="" class="form-control" placeholder="Enter No.Tel">
+                                    <input type="text" name="nohp" id="" class="form-control" placeholder="Enter No.Tel" value="{{ $user->nohp }}">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">Address</label>
-                                    <textarea name="address" id="" cols="30" rows="5" placeholder="Enter Address" class="form-control"></textarea>
+                                    <textarea name="address" id="" cols="30" rows="5" placeholder="Enter Address" class="form-control">{{ $user->address }}</textarea>
                                 </div>
-                                {{-- <div class="col-12 px-5 py-2">
+                                <div class="col-12 px-5 py-2">
                                     <label for="name">Status</label>
                                     <select name="level" id="" class="form-select" >
-                                        <option value="" class="text-secondary"></option>
-                                        <option value="admin">Admin</option>
-                                        <option value="member">Member</option>
+                                        <option value="admin" {{ $user->level == 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="member" {{ $user->level == 'member' ? 'selected' : '' }}>Member</option>
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="col-12 px-5 py-2">
-                                    <label for="name">Password</label>
-                                    <input type="password" name="password" id="" class="form-control" placeholder="Enter Password">
+                                    <label for="name">Password </label>
+                                    <input type="text" name="password" id="" class="form-control" placeholder="Enter Password" value="{{ $user->password }}">
                                 </div>
                                 <div class="col-12 px-5 py-4">
                                     <input type="submit" value="Create" class="btn btn-dark w-100">

@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/sign-in');
 });
+// Route::get('/update', function () {
+//     return view('pages.user.update');
+// });
 Route::get('/sign-in', function () {
     return view('pages.sign-in');
 });
@@ -35,15 +38,17 @@ Route::middleware('login')->group(function () {
     Route::get('/user',[ViewController::class,'view_user']);
     Route::get('/user/create',[ViewController::class,'view_user_create']);
     Route::get('/user/update/{id}',[ViewController::class,'view_user_update']);
+    Route::get('/user/delete/{id}',[ViewController::class,'view_user_delete']);
 
     Route::get('/event',[ViewController::class,'view_event']);
     Route::get('/event/create',[ViewController::class,'view_event_create']);
+    Route::get('/event/detail/{id}',[ViewController::class,'view_event_detail']);
 
     Route::get('/task/{id}',[ViewController::class,'view_task_create']);
 
     Route::post('/user', [AddUserController::class, 'user_search']);
     Route::post('/user/create',[AddUserController::class,'user_create']);
-    Route::post('/user/edit',[AddUserController::class,'user_create']);
+    Route::post('/user/update/{id}',[AddUserController::class,'user_update']);
 
     Route::post('/event/create',[EventController::class,'event_create']);
 

@@ -27,6 +27,10 @@ class ViewController extends Controller
         $data['user'] = User::where('id',$id)->first();
         return view("pages.user.update",$data);
     }
+    public function view_user_delete($id){
+        User::where('id',$id)->delete();
+        return redirect('/user');
+    }
 
     public function view_event(){
         $data['events'] = Event::all();
@@ -35,6 +39,10 @@ class ViewController extends Controller
     public function view_event_create(){
         // $data['events'] = Event::all();
         return view("pages.event.create",);
+    }
+    public function view_event_detail($id){
+        // $data[""] =
+        return view("pages.event.detail",);
     }
 
     public function view_task_create($id){

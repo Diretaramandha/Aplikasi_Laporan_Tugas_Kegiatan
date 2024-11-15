@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -40,11 +41,11 @@ class ViewController extends Controller
         // $data['events'] = Event::all();
         return view("pages.event.create",);
     }
-    public function view_event_detail($id){
-        // $data[""] =
-        return view("pages.event.detail",);
-    }
 
+    public function view_task(){
+        $data['task'] = Task::with('event')->get();
+        return view("pages.Task.task",$data);
+    }
     public function view_task_create($id){
         $data['event'] = Event::where('id',$id)->first();
         return view('pages.Task.create',$data);

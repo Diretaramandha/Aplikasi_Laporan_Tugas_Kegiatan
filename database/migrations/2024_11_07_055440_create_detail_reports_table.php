@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('datetime');
             $table->text('link_file');
             $table->text('file_upload');
-            $table->foreignId('reports_id')->constrained('reports')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('reports_id')->constrained('reports')->cascadeOnDelete();
             $table->timestamps();
         });
     }

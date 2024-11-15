@@ -22,7 +22,7 @@ class TaskController extends Controller
         $task->name = $request->name;
         $task->description = $request->description;
         $task->id_event = $id;
-        $task->tasks_idtask = '';
+        $task->tasks_idtask = null;
         $task->save();
 
         return redirect('/event');

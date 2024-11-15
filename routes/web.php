@@ -32,6 +32,8 @@ Route::post('/auth',[AuthController::class,'auth_user']);
 Route::get('/logout',[AuthController::class,'logout_user']);
 
 Route::middleware('login')->group(function () {
+
+    //get
     Route::get('/dashboard',[ViewController::class,'view_dashboard']);
     Route::get('/tables',[ViewController::class,'view_tables']);
 
@@ -42,10 +44,10 @@ Route::middleware('login')->group(function () {
 
     Route::get('/event',[ViewController::class,'view_event']);
     Route::get('/event/create',[ViewController::class,'view_event_create']);
-    Route::get('/event/detail/{id}',[ViewController::class,'view_event_detail']);
 
     Route::get('/task/{id}',[ViewController::class,'view_task_create']);
 
+    //post
     Route::post('/user', [AddUserController::class, 'user_search']);
     Route::post('/user/create',[AddUserController::class,'user_create']);
     Route::post('/user/update/{id}',[AddUserController::class,'user_update']);
@@ -53,4 +55,5 @@ Route::middleware('login')->group(function () {
     Route::post('/event/create',[EventController::class,'event_create']);
 
     Route::post('/task/{id}',[TaskController::class,'task_create']);
+    Route::get('/task',[ViewController::class,'view_task']);
 });

@@ -98,8 +98,7 @@
                                             Date</th>
                                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                             Event Detail</th>
-                                        <th class="text-secondary opacity-7">
-                                        </th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -141,8 +140,8 @@
                                             <a href="/event/delete/{{ $item->id }}" class="text-secondary font-weight-bold text-xs ms-3" data-bs-toggle="tooltip" data-bs-title="Delete">
                                                 <img src="{{ asset('img/delete.png') }}" alt="" class="" width="18px" height="20px">
                                             </a>
-                                            <a href="/event/detail/{{ $item->id }}" class="text-secondary font-weight-bold text-xs ms-3" data-bs-toggle="tooltip" data-bs-title="Detail">
-                                                <img src="{{ asset('img/detail.png') }}" alt="" class="" width="22px" height="22px">
+                                            <a href="/event/delete/{{ $item->id }}" class="text-secondary font-weight-bold text-xs ms-3" data-bs-toggle="tooltip" data-bs-title="Delete">
+                                                <img src="{{ asset('img/task-grey.png') }}" alt="" class="" width="18px" height="20px">
                                             </a>
                                         </td>
                                     </tr>

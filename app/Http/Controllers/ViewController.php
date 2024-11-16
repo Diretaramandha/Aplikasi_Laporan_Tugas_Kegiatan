@@ -9,13 +9,18 @@ use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
+
+    //--Dashboard
     public function view_dashboard(){
         return view("pages.dashboard");
     }
+
+    //--tables
     public function view_tables(){
         return view("pages.tables");
     }
 
+    //--User
     public function view_user(){
         $data['users'] = User::all();
         return view("pages.user",$data);
@@ -33,6 +38,7 @@ class ViewController extends Controller
         return redirect('/user');
     }
 
+    //--Event
     public function view_event(){
         $data['events'] = Event::all();
         return view("pages.event",$data);
@@ -42,12 +48,26 @@ class ViewController extends Controller
         return view("pages.event.create",);
     }
 
-    public function view_task(){
-        $data['task'] = Task::with('event')->get();
+    //--Task
+    public function view_task($id){
+        $data['task'] = Task::with('event')
+        ->where('id_event',$id)
+        ->get();
+        $data['id'] = $id;
         return view("pages.Task.task",$data);
     }
     public function view_task_create($id){
         $data['event'] = Event::where('id',$id)->first();
         return view('pages.Task.create',$data);
+    }
+    public function view_task_update($id_event,$id){
+        $data['task'] = Task::with('event')
+        ->find($id );
+        // ->get();
+        return view('pages.Task.update',$data);
+    }
+    public function view_task_delete($id_event,$id){
+        Task::where('id',$id)->delete();
+        return redirect('/task/'. $id_event);
     }
 }

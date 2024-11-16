@@ -25,6 +25,27 @@ class TaskController extends Controller
         $task->tasks_idtask = null;
         $task->save();
 
-        return redirect('/event');
+        return redirect('/task/'. $task->id_event);
+     }
+
+     public function task_update(Request $request,$id_event,$id){
+        $validate = Validator::make($request->all(),[
+            'name' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back();
+        }
+
+        $task = Task::find($id);
+        $task->update([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'id_event'=> $id_event,
+            'tasks_idtask'=> null,
+        ]);
+
+        return redirect('/task/'.$id_event);
      }
 }

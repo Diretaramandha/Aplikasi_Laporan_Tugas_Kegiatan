@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Event</a></li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Task</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Create Main Task</h6>
+                    <h6 class="font-weight-bold mb-0">Update Main Task</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -54,11 +54,11 @@
                         <div class="card-header border-bottom pb-0">
                             <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Create Main Task</h6>
-                                    <p class="text-sm">Create Main Task</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Update Main Task</h6>
+                                    <p class="text-sm">Update Main Task</p>
                                 </div>
                                 <div class="ms-auto d-flex">
-                                    <a href="/user" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
+                                    <a href="/task/{{ $task->id_event }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
                                         <span class="btn-inner--icon">
                                             {{-- <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
                                                 <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
@@ -66,34 +66,35 @@
                                         </span>
                                         <span class="btn-inner--text">Back</span>
                                     </a>
-                                    <a href="/user" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
+                                    {{-- <a href="/task/{{ $task->id_event }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
                                         <span class="btn-inner--icon">
                                             {{-- <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
                                                 <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
                                             </svg> --}}
-                                        </span>
-                                        <span class="btn-inner--text">Create Another Main Task</span>
-                                    </a>
+                                        {{-- </span>
+                                        <span class="btn-inner--text">Update Main Task</span>
+                                    </a> --}}
+
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-0 py-0">
-                            <form action="/task/create/{{ $event->id }}" method="post">
+                            <form action="/task/{{ $task->id_event }}/update/{{ $task->id  }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 px-5 py-2 pt-4">
                                         <label for="name">Name</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name" value="{{ $task->name }}">
                                     </div>
                                     <div class="col-12 px-5 py-2">
                                         <label for="name">Description</label>
-                                        <input type="text" name="description" id="" class="form-control" placeholder="Enter Description">
+                                        <input type="text" name="description" id="" class="form-control" placeholder="Enter Description" value="{{ $task->description }}">
                                     </div>
                                     {{-- <div class="col-12 px-5 pt-4">
                                         <input type="submit" value="Create Sub Task" class="btn btn-dark w-100">
                                     </div> --}}
                                     <div class="col-12 px-5 py-4">
-                                        <input type="submit" value="Create Task" class="btn btn-dark w-100">
+                                        <input type="submit" value="Update Task" class="btn btn-dark w-100">
                                     </div>
                                 </div>
                             </form>

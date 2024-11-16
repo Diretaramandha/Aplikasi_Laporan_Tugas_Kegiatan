@@ -45,7 +45,10 @@ Route::middleware('login')->group(function () {
     Route::get('/event',[ViewController::class,'view_event']);
     Route::get('/event/create',[ViewController::class,'view_event_create']);
 
-    Route::get('/task/{id}',[ViewController::class,'view_task_create']);
+    Route::get('/task/{id}',[ViewController::class,'view_task']);
+    Route::get('/task/create/{id}',[ViewController::class,'view_task_create']);
+    Route::get('/task/{id__event}/update/{id}',[ViewController::class,'view_task_update']);
+    Route::get('/task/{id_event}/delete/{id}',[ViewController::class,'view_task_delete']);
 
     //post
     Route::post('/user', [AddUserController::class, 'user_search']);
@@ -54,6 +57,6 @@ Route::middleware('login')->group(function () {
 
     Route::post('/event/create',[EventController::class,'event_create']);
 
-    Route::post('/task/{id}',[TaskController::class,'task_create']);
-    Route::get('/task',[ViewController::class,'view_task']);
+    Route::post('/task/create/{id}',[TaskController::class,'task_create']);
+    Route::post('/task/{id_event}/update/{id}',[TaskController::class,'task_update']);
 });

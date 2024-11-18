@@ -26,4 +26,23 @@ class EventController extends Controller
 
         return redirect('/task/'. $event->id);
     }
+    public function event_update($id,Request $request){
+        $validate = $request->validate([
+            'name'=> ['required'],
+            'description'=> ['required','string'],
+            'date'=> ['required','date'],
+        ]);
+
+        if (!$validate) {
+            return redirect()->back();
+        }
+
+        $event = Event::where('id', $id)->first();
+        $event->update([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'date'=> $request->date,
+        ]);
+        return redirect('/event');
+    }
 }

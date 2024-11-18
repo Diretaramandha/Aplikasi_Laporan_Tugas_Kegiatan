@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->dateTime('duetime');
-            $table->foreignId('task_detail_id')->constrained('tasks')->cascadeOnDelete();
-            $table->foreignId('tasks_idtask')->constrained('tasks')->cascadeOnDelete();
+            $table->foreignId('tasks_idtask')->constrained('tasks')->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

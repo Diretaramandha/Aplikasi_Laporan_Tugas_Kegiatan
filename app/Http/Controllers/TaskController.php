@@ -48,4 +48,23 @@ class TaskController extends Controller
 
         return redirect('/task/'.$id_event);
      }
+     public function sub_task_create(Request $request,$id_event,$id){
+        $validate = Validator::make($request->all(),[
+            'name' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back();
+        }
+
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->id_event = $id_event;
+        $task->tasks_idtask = $id;
+        $task->save();
+
+        return redirect('/task/'. $task->id_event.'/sub-task/'.$task->tasks_idtask);
+     }
 }

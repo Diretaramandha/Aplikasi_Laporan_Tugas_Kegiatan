@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
@@ -72,4 +73,7 @@ Route::middleware('admin')->group(function () {
     //--sub task
     Route::post('/task/{id_event}/sub-task/{id}/create',[TaskController::class,'sub_task_create']);
     Route::post('/task/{id_event}/sub-task/{id}/update',[TaskController::class,'sub_task_update']);
+    //--report
+    Route::post('/report/{id_task}',[ReportController::class,'report_create']);
+
 });

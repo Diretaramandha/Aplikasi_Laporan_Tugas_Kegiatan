@@ -79,14 +79,14 @@
                                         <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
                                     </div>
                                     <div class="col-12 px-5 py-2">
-                                        <label for="name">Description</label>
-                                        <input type="text" name="description" id="" class="form-control" placeholder="Enter Description">
+                                        <label for="time">Date & Time</label>
+                                        <input type="datetime-local" name="duetime" id="time" class="form-control" placeholder="Enter Time">
                                     </div>
                                     {{-- <div class="col-12 px-5 pt-4">
                                         <input type="submit" value="Create Sub Task" class="btn btn-dark w-100">
                                     </div> --}}
                                     <div class="col-12 px-5 py-4">
-                                        <input type="submit" value="Create Task" class="btn btn-dark w-100">
+                                        <input type="submit" value="Create Report" class="btn btn-dark w-100">
                                     </div>
                                 </div>
                             </form>

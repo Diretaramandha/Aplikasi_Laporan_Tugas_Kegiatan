@@ -29,6 +29,7 @@ class AddUserController extends Controller
             'password' => ['required'],
         ]);
         if (!$create) {
+            toast('Failed Create User', 'warning');
             return redirect()->back();
         }
         $user = new User();
@@ -41,6 +42,7 @@ class AddUserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
+        toast('Success Create User', 'success');
         return redirect('/user');
     }
     public function user_update(Request $request)
@@ -55,9 +57,11 @@ class AddUserController extends Controller
             'password' => ['required'],
         ]);
         if (!$create) {
+
+            toast('Failed Update User', 'warning');
             return redirect()->back();
         }
-        $user = User::where('id',$request->id);
+        $user = User::where('id', $request->id);
         $user->update([
             'name' => $request->name,
             'username' => $request->username,
@@ -67,7 +71,7 @@ class AddUserController extends Controller
             'level' => $request->level,
             'password' => $request->password,
         ]);
-
+        toast('Success update User', 'success');
         return redirect('/user');
     }
 }

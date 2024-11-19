@@ -15,6 +15,7 @@ class TaskController extends Controller
         ]);
 
         if ($validate->fails()) {
+        toast('Failed Create Task', 'warning');
             return redirect()->back();
         }
 
@@ -25,7 +26,8 @@ class TaskController extends Controller
         $task->tasks_idtask = null;
         $task->save();
 
-        return redirect('/task/'. $task->id_event);
+        toast('Success Create Task', 'success');
+        return redirect('/task/'. $task->id_event.'/sub-task/'.$task->id.'/create');
      }
 
      public function task_update(Request $request,$id_event,$id){
@@ -35,6 +37,7 @@ class TaskController extends Controller
         ]);
 
         if ($validate->fails()) {
+            toast('Failed Update Task', 'warning');
             return redirect()->back();
         }
 
@@ -46,6 +49,7 @@ class TaskController extends Controller
             'tasks_idtask'=> null,
         ]);
 
+        toast('Success Update Task', 'success');
         return redirect('/task/'.$id_event);
      }
      public function sub_task_create(Request $request,$id_event,$id){
@@ -55,6 +59,7 @@ class TaskController extends Controller
         ]);
 
         if ($validate->fails()) {
+            toast('Failed create Task', 'warning');
             return redirect()->back();
         }
 
@@ -65,6 +70,29 @@ class TaskController extends Controller
         $task->tasks_idtask = $id;
         $task->save();
 
-        return redirect('/task/'. $task->id_event.'/sub-task/'.$task->tasks_idtask);
+        toast('Success Create Task', 'success');
+        return redirect('/report/create/'.$task->id);
+     }
+     public function sub_task_update(Request $request,$id_event,$id_task){
+        $validate = Validator::make($request->all(),[
+            'name' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        if ($validate->fails()) {
+            toast('Failed Update Task', 'warning');
+            return redirect()->back();
+        }
+
+        $task = Task::find($id_task);
+        $task->update([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'id_event'=> $id_event,
+            'tasks_idtask'=> null,
+        ]);
+
+        toast('Success Update Task', 'success');
+        return redirect('/task/'.$id_event);
      }
 }

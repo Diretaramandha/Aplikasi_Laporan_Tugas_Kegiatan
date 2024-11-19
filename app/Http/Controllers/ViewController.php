@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Member;
+use App\Models\Report;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
@@ -14,12 +16,18 @@ class ViewController extends Controller
     //--Dashboard
     public function view_dashboard()
     {
-        $data['event'] = Event::all();
-        $data['member'] = Member::all();
-        $data['user'] = User::all();
-        return view("pages.dashboard",$data);
-    }
+        $user = Auth::user();
+        $data['event'] = Event::with('user')
+            ->where('create_by', $user->id)->get();
 
+        $data['member'] = Member::all();
+        // $data['user'] = User::all();
+        return view("pages.dashboard", $data);
+    }
+    //--profile
+    public function view_profile(){
+        return view('pages.profile');
+    }
     //--User
     public function view_user()
     {
@@ -105,9 +113,9 @@ class ViewController extends Controller
         $data['sub_task'] = Task::with('event')
             ->where('tasks_idtask', $id)
             ->get();
+
         $data['id_event'] = $id_event;
         $data['id_task'] = $id;
-        // dd($data['sub_task']);
         return view('pages.Task.sub-task.task', $data);
     }
     public function view_sub_task_create($id_event, $id)
@@ -131,11 +139,40 @@ class ViewController extends Controller
     }
 
     //--report
-    public function view_report($id_task){
-        $data['task_report'] = Task::with('event')
-        ->find($id_task);
+    public function view_report(){
+        $data['event'] = Event::all();
+
+        return view('pages.report.report-event', $data);
+    }
+    public function view_report_main_task($id_event){
+        $data['task'] = Task::with('event')
+        ->where('tasks_idtask',null)
+        ->where('id_event',$id_event)
+        ->get( );
+
+        return view('pages.report.report_main_task', $data);
+    }
+    public function view_report_task($id_event,$id_task){
+        $data['task'] = Task::with('event','report')
+            ->whereNotNull('tasks_idtask')
+            ->where('id_event', $id_event)
+            ->get();
+        // $data['report'] = Report::with('task')
+        // ->get();
+
+
+        return view('pages.report.tables_report', $data);
+    }
+    public function view_report_create($id_task)
+    {
+        $data['task_report'] = $id_task;
         // $data['id_task'] = $id_task;
         // ->get();
-        return view('pages.report.report',$data);
+        return view('pages.report.report', $data);
+    }
+    public function view_report_detail($id_report)
+    {
+        $data['id_report'] = $id_report;
+        return view('pages.report.report_detail', $data);
     }
 }

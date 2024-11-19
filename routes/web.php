@@ -35,7 +35,9 @@ Route::middleware('admin')->group(function () {
     //get
 
     Route::get('/dashboard',[ViewController::class,'view_dashboard']);
-
+    //--profile
+    Route::get('/profile',[ViewController::class,'view_profile']);
+    //--user
     Route::get('/user',[ViewController::class,'view_user']);
     Route::get('/user/create',[ViewController::class,'view_user_create']);
     Route::get('/user/update/{id}',[ViewController::class,'view_user_update']);
@@ -56,7 +58,12 @@ Route::middleware('admin')->group(function () {
     Route::get('/task/{id_event}/sub-task/{id_task}/update/{id_sub_task}',[ViewController::class,'view_sub_task_update']);
     Route::get('/task/{id_event}/sub-task/{id_tas}/delete/{id_sub_task}',[ViewController::class,'view_sub_task_delete']);
     //--report
-    Route::get('/report/{id_task}',[ViewController::class,'view_report']);
+    Route::get('/report',[ViewController::class,'view_report']);
+    Route::get('/report/{id_event}',[ViewController::class,'view_report_main_task']);
+    Route::get('/report/{id_event}/task/{id_task}',[ViewController::class,'view_report_task']);
+    Route::get('/report/create/{id_task}',[ViewController::class,'view_report_create']);
+    //--detail report
+    Route::get('/report/upload/{id_report}',[ViewController::class,'view_report_detail']);
 
     //--POST
 
@@ -74,6 +81,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/task/{id_event}/sub-task/{id}/create',[TaskController::class,'sub_task_create']);
     Route::post('/task/{id_event}/sub-task/{id}/update',[TaskController::class,'sub_task_update']);
     //--report
-    Route::post('/report/{id_task}',[ReportController::class,'report_create']);
+    Route::post('/report/create/{id_task}',[ReportController::class,'report_create']);
+    //--detail report
+    Route::post('/report/upload/{id_report}',[ReportController::class,'report_detail_create']);
 
 });

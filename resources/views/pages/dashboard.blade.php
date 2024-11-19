@@ -154,7 +154,7 @@
         </div>
         <hr class="my-0">
         <div class="row my-4">
-            <div class="col-xl-3 col-sm-6 mb-xl-0">
+            {{-- <div class="col-xl-3 col-sm-6 mb-xl-0">
                 <div class="card border shadow-xs mb-4">
                     <div class="card-body text-start p-3 w-100">
                         <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-xl-3 col-sm-6 mb-xl-0">
                 <div class="card border shadow-xs mb-4">
                     <div class="card-body text-start p-3 w-100">
@@ -239,8 +239,8 @@
                                             Event</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             Description</th>
-                                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                            View Report</th>
+                                        {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                            View Report</th> --}}
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             Date</th>
                                     </tr>
@@ -253,20 +253,19 @@
                                         </td>
                                         <td>
                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center ms-1">
+                                                <div class="d-flex flex-column justify-content-center ms-1 ">
                                                     <h6 class="mb-0 text-sm font-weight-semibold text-secondary">{{ $item->name }}</h6>
-                                                    </p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <p class="text-sm text-secondary mb-0">{{ $item->description }}</p>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <a href="/report" class="btn btn-sm btn-secondary btn-icon d-flex align-items-center mb-0 me-2 w-50">
                                                 <span class="btn-inner--text">View Report</span>
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <p class="text-sm text-secondary mb-0">{{ $item->date }}</p>
                                         </td>

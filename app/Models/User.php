@@ -18,6 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $quarded = [];
+    public function events(){
+        return $this->hasMany(Event::class,'create_by');
+    }
     // protected $fillable = [
     //     'name',
     //     'email',

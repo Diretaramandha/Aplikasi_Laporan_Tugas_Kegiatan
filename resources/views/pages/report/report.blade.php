@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="card-body px-0 py-0">
-                            <form action="/report/{{ $task_report }}" method="post">
+                            <form action="/report/create/{{ $task_report }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 px-5 py-2 pt-4">

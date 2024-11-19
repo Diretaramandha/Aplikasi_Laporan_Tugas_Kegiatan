@@ -37,6 +37,8 @@
     {{-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
 
+    <link rel="stylesheet" href="{{ asset('fontawosome/css/all.min.css') }}">
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -83,6 +85,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link  " href="/report">
+                        <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-file fs-5 text-white"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Report</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link  " href="/event">
                         <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <img src="{{ asset('img/excel-white.png') }}" alt="" style="width: 18px; height: 18px;">
@@ -110,6 +120,7 @@
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        @include('sweetalert::alert')
         @yield('main')
         <!-- Navbar -->
         <!-- End Navbar -->

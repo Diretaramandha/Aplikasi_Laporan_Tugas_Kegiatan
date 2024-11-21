@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Event</a></li>
                     <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Task</li>
                 </ol>
-                <h6 class="font-weight-bold mb-0">Sub Task</h6>
+                <h6 class="font-weight-bold mb-0">Task</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -56,8 +56,8 @@
                     <div class="card-header border-bottom pb-0">
                         <div class="d-sm-flex align-items-center mb-3">
                             <div>
-                                <h6 class="font-weight-semibold text-lg mb-0">Sub Task</h6>
-                                <p class="text-sm mb-sm-0">You can see the sub tasks that are in the main task</p>
+                                <h6 class="font-weight-semibold text-lg mb-0">Task</h6>
+                                <p class="text-sm mb-sm-0">You can see the tasks that are in the main task</p>
                             </div>
                             <div class="ms-auto d-flex">
                                 <div class="input-group input-group-sm ms-auto me-2">
@@ -70,21 +70,11 @@
                                     <input type="text" class="form-control form-control-sm" placeholder="Search">
                                 </div>
                                 <a href="/task/{{ $id_event }}/sub-task/{{ $id_task }}/create" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-50">
-                                    {{-- <span class="btn-inner--icon">
-                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                        </svg>
-                                    </span> --}}
                                     <span class="btn-inner--text">Create Task</span>
                                 </a>
-                                <a href="/report/{{ $id_event }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-75">
-                                    {{-- <span class="btn-inner--icon">
-                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                        </svg>
-                                    </span> --}}
+                                {{-- <a href="/report/{{ $id_event }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-75">
                                     <span class="btn-inner--text">Upload Report</span>
-                                </a>
+                                </a> --}}
                                 <a href="/task/{{ $id_event }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-25">
                                     {{-- <span class="btn-inner--icon">
                                         <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
@@ -112,9 +102,9 @@
                                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                             Member
                                         </th>
-                                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                        {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                             Report
-                                        </th>
+                                        </th> --}}
                                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                             Action
                                         </th>
@@ -152,13 +142,13 @@
                                         <td class="align-middle text-center">
                                             <p class="text-sm text-secondary mb-0">direta</p>
                                         </td>
-                                        <td class="align-middle text-center">
-                                            <a href="/report/" class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
+                                        {{-- <td class="align-middle text-center">
+                                            <a href="/report/{{ $item->event->id }}" class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
                                                 <span class="btn-inner--icon">
                                                     <img src="{{ asset('img/report-white.png') }}" alt="" width="16px" height="18px">
                                                 </span>
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         <td class="align-middle text-center">
                                             <a href="/task/{{ $item->event->id }}/sub-task/{{ $id_task }}/update/{{ $item->id }}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit">
                                                 <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">

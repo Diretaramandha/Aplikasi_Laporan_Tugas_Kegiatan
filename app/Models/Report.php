@@ -9,7 +9,11 @@ class Report extends Model
 {
     use HasFactory;
 
-    public function task(){
-        return $this->belongsTo(Task::class,'tasks_idtask');
-    }
+   public function tasks(){
+    return $this->belongsTo(Task::class,'tasks_idtask');
+   }
+
+   public function detailReport(){
+    return $this->hasMany(DetailReport::class,'id_report');
+   }
 }

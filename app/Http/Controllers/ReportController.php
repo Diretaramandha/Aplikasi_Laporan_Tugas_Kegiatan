@@ -54,7 +54,7 @@ class ReportController extends Controller
         } else {
             $detailreport->link_file = $request->link_file;
         }
-        $detailreport->reports_id = $id_report;
+        $detailreport->id_report = $id_report;
         $detailreport->save();
 
         return redirect('/report');

@@ -94,17 +94,17 @@
                                 <table class="table align-items-center justify-content-center mb-0">
                                     <thead class="bg-gray-100">
                                         <tr>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                                No.</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                                Event</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Task</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Report</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Go to the task</th>
-
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">No.</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Event</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Task</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Report
+                                            </th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Deadline
+                                            </th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Upload
+                                            </th>
+                                            {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Progress
+                                            </th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -115,14 +115,9 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
-                                                        {{-- <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
-                                                </div> --}}
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->event->name }}</h6>
-                                                            {{-- <p class="text-sm text-secondary mb-0">{{ $item->name }}
-                                                    </p> --}}
+                                                                {{ $item->tasks->event->name }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -130,25 +125,33 @@
                                                     <div class="d-flex px-2 py-2">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name }}
+                                                                {{ $item->tasks->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="align-middle">
-                                                    <a href="/report/upload/{{ $item->report->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fa-regular fa-pen-to-square fs-6"></i>
-                                                        </span>
-                                                    </a>
+                                                <td>
+                                                    <div class="d-flex px-2 py-2">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->name }} <!-- Perbaikan di sini -->
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-2">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->duetime }} <!-- Perbaikan di sini -->
+                                                            </h6>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td class="align-middle ">
-                                                    <a href="/task/{{ $item->event->id }}/sub-task/{{ $item->tasks_idtask }}"
+                                                    <a href="/report/upload/{{ $item->id }}"
                                                         class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fa-solid fa-arrow-right fs-6"></i>
-                                                        </span>
+                                                        <span class="btn-inner--icon">Upload</span>
                                                     </a>
                                                 </td>
                                             </tr>

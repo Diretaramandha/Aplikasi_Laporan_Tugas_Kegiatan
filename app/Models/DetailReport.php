@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DetailReport extends Model
 {
     use HasFactory;
+
+    public function report(){
+        return $this->belongsTo(Report::class,'id_report');
+    }
 }

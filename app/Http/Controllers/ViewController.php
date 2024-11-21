@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailReport;
 use App\Models\Event;
 use App\Models\Member;
 use App\Models\Report;
@@ -17,17 +18,29 @@ class ViewController extends Controller
     public function view_dashboard()
     {
         $user = Auth::user();
-        $data['event'] = Event::with('user')
-            ->where('create_by', $user->id)->get();
+        $data['event'] = Event::whereHas('tasks', function ($query) {
+            $query->whereNull('tasks_idtask');
+        })
+            ->with('user', 'tasks')
+            ->where('create_by', $user->id)
+            ->get();
 
         $data['member'] = Member::all();
-        // $data['user'] = User::all();
+
         return view("pages.dashboard", $data);
     }
+
+
+
     //--profile
-    public function view_profile(){
-        return view('pages.profile');
+    public function view_profile()
+    {
+        $data['user'] = Auth::user();
+        return view('pages.profile', $data);
     }
+
+
+
     //--User
     public function view_user()
     {
@@ -47,8 +60,11 @@ class ViewController extends Controller
     public function view_user_delete($id)
     {
         User::where('id', $id)->delete();
+
         return redirect('/user');
     }
+
+
 
     //--Event
     public function view_event()
@@ -72,6 +88,8 @@ class ViewController extends Controller
         return redirect('/event');
     }
 
+
+
     //--Task
     public function view_task($id)
     {
@@ -79,12 +97,6 @@ class ViewController extends Controller
             ->where('id_event', $id)
             ->where('tasks_idtask', null)
             ->get();
-
-        // $task_id = $data['task'][0]->id;
-
-        // $data['sub_task'] = Task::with('event')
-        //     ->where('tasks_idtask', $task_id)
-        //     ->count();
 
         $data['id'] = $id;
         return view("pages.Task.task", $data);
@@ -106,6 +118,8 @@ class ViewController extends Controller
         Task::where('id', $id)->delete();
         return redirect('/task/' . $id_event);
     }
+
+
 
     //--sub-task
     public function view_sub_task($id_event, $id)
@@ -138,41 +152,48 @@ class ViewController extends Controller
         return redirect('/task/' . $id_event . '/sub-task/' . $id_task);
     }
 
-    //--report
-    public function view_report(){
-        $data['event'] = Event::all();
 
+
+    //--report
+    public function view_report()
+    {
+        $data['report'] = Task::with('event', 'report', 'subTask')
+            ->whereNull('tasks_idtask')
+            // ->whereHas('report', function ($query) {
+            //     $query->whereNotNull('tasks_idtask');
+            // })
+            ->get();
+        // dd($data['report']);
         return view('pages.report.report-event', $data);
     }
-    public function view_report_main_task($id_event){
-        $data['task'] = Task::with('event')
-        ->where('tasks_idtask',null)
-        ->where('id_event',$id_event)
-        ->get( );
-
-        return view('pages.report.report_main_task', $data);
-    }
-    public function view_report_task($id_event,$id_task){
-        $data['task'] = Task::with('event','report')
-            ->whereNotNull('tasks_idtask')
-            ->where('id_event', $id_event)
+    public function view_report_task($id_event, $id_task)
+    {
+        // Mengambil data task berdasarkan id_event dan id_task
+        $data['task'] = Report::whereHas('tasks', function ($query) use ($id_event) {
+            $query->where('id_event', $id_event);
+        })
+            ->whereHas('tasks', function ($query) use ($id_task) {
+                $query->where('tasks_idtask', $id_task);
+            })
+            ->with('tasks', 'detailReport')
             ->get();
-        // $data['report'] = Report::with('task')
-        // ->get();
-
 
         return view('pages.report.tables_report', $data);
     }
     public function view_report_create($id_task)
     {
         $data['task_report'] = $id_task;
-        // $data['id_task'] = $id_task;
-        // ->get();
-        return view('pages.report.report', $data);
+
+        return view('pages.report.report-create', $data);
     }
     public function view_report_detail($id_report)
     {
         $data['id_report'] = $id_report;
         return view('pages.report.report_detail', $data);
+    }
+    public function view_report_all($id_event)
+    {
+        $data['report'] = DetailReport::with('report')->get();
+        return view('pages.report.view_report', $data);
     }
 }

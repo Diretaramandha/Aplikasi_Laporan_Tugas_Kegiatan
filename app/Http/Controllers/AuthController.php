@@ -14,6 +14,7 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($validate)){
+            alert()->info('Login Success','Welcome, '.Auth::user()->name);
             return redirect("/dashboard");
         }
         return redirect()->back();

@@ -99,50 +99,47 @@
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">
                                                 Event</th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Task</th>
+                                                Main Task</th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                View main task</th>
+                                                report</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($event as $key => $item)
+                                        @foreach ($report as $key => $item)
                                             <tr>
                                                 <td>
                                                     <p class="fw-bold ms-3 my-2">{{ $key + 1 }}</p>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
-                                                        {{-- <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
-                                                </div> --}}
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name }}</h6>
-                                                            {{-- <p class="text-sm text-secondary mb-0">{{ $item->name }}
-                                                    </p> --}}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex px-2 py-2">
-                                                        <div class="d-flex flex-column justify-content-center ms-1">
-                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->description }}
+                                                                {{ $item->event->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                {{-- <td class="align-middle">
-                                                    <a href="/report/upload/{{ $item->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fa-regular fa-pen-to-square fs-6"></i>
-                                                        </span>
-                                                    </a>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->name }}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                {{-- <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->task}}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
                                                 </td> --}}
                                                 <td class="align-middle ">
-                                                    <a href="/report/{{ $item->id }}"
+                                                    <a href="/report/task/{{ $item->event->id }}/{{ $item->id }}"
                                                         class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
                                                         <span class="btn-inner--icon">
                                                             <i class="fa-solid fa-arrow-right fs-6"></i>

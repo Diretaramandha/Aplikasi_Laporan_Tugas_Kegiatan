@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class member
@@ -15,6 +16,9 @@ class member
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!Auth::user()->level == 'member') {
+            return redirect()->back();
+        }
         return $next($request);
     }
 }

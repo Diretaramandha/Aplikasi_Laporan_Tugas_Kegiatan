@@ -11,11 +11,12 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function task(){
-        return $this->hasMany(Task::class,'id_event');
-    }
-
     public function user(){
         return $this->belongsTo(User::class,'create_by');
     }
+
+    public function tasks(){
+        return $this->hasMany(Task::class,'id_event');
+    }
+    
 }

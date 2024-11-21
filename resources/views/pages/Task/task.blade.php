@@ -115,7 +115,7 @@
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                 Member</th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Sub Task</th>
+                                                Task</th>
                                             {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             Report Task</th> --}}
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">

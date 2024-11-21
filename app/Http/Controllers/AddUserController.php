@@ -69,9 +69,46 @@ class AddUserController extends Controller
             'nohp' => $request->nohp,
             'address' => $request->address,
             'level' => $request->level,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
         toast('Success update User', 'success');
         return redirect('/user');
     }
+    public function profile_change(Request $request, $id_user)
+{
+    // Validasi input
+    $create = $request->validate([
+        'name' => ['required'],
+        'username' => ['required'],
+        'email' => ['required', 'email'],
+        'nohp' => ['required'],
+        'address' => ['required'],
+        'level' => ['required'],
+        'password' => ['nullable'],
+    ]);
+
+    $user = User::find($id_user);
+    if (!$user) {
+        toast('User  not found', 'error');
+        return redirect()->back();
+    }
+
+    $user->update([
+        'name' => $request->name,
+        'username' => $request->username,
+        'email' => $request->email,
+        'nohp' => $request->nohp,
+        'address' => $request->address,
+        'level' => $request->level,
+    ]);
+
+    if (!empty($request->password)) {
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
+    }
+
+    toast('Success update your profile', 'success');
+    return redirect('/profile');
+}
 }

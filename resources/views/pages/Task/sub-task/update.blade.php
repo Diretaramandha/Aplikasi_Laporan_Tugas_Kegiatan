@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Event</a></li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Task</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Update Main Task</h6>
+                    <h6 class="font-weight-bold mb-0">Update Task</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -54,8 +54,8 @@
                         <div class="card-header border-bottom pb-0">
                             <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Update Main Task</h6>
-                                    <p class="text-sm">Update Main Task</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Update Task</h6>
+                                    <p class="text-sm">Update Task</p>
                                 </div>
                                 <div class="ms-auto d-flex">
                                     <a href="/task/{{ $sub_task->id_event }}/sub-task/{{ $sub_task->tasks_idtask }}" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">

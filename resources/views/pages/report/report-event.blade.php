@@ -141,9 +141,7 @@
                                                 <td class="align-middle ">
                                                     <a href="/report/task/{{ $item->event->id }}/{{ $item->id }}"
                                                         class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fa-solid fa-arrow-right fs-6"></i>
-                                                        </span>
+                                                            <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
                                             </tr>

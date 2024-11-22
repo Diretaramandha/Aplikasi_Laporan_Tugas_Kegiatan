@@ -10,7 +10,7 @@
                         </li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Report</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Report</h6>
+                    <h6 class="font-weight-bold mb-0">Detail Report</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -35,6 +35,7 @@
                                 </svg>
                             </a>
                         </li>
+                        {{-- #757474 --}}
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,55 +59,54 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4 px-5">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 ">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-header border-bottom pb-0">
-                            <div class="d-sm-flex align-items-center mb-3">
+                            <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Report</h6>
-                                    <p class="text-sm mb-sm-0">You can see the main tasks that are in the event</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Detail Report</h6>
+                                    <p class="text-sm">make an event and of course the members will</p>
                                 </div>
                                 <div class="ms-auto d-flex">
-                                    <div class="input-group input-group-sm ms-auto me-2">
-                                        <span class="input-group-text text-body">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Search">
-                                    </div>
-                                    {{-- <a href=""
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-50">
-                                        <span class="btn-inner--text">Create Task</span>
-                                    </a> --}}
                                     <a href="javascript:void(0);" onclick="window.history.back();"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-25">
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-100">
                                         <span class="btn-inner--text">Back</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-0 py-0">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center justify-content-center mb-0">
+                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
+                                <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
+                                    @csrf
+                                    <span class="input-group-text text-body">
+                                        <button type="submit" class="border-0 bg-transparent w-100">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </span>
+                                    <input type="search" class="form-control" name="search" placeholder="Search">
+                                </form>
+                            </div>
+                            <div class="table-responsive p-0 ">
+                                <table id="tabel-data" class="table align-items-center mb-0">
                                     <thead class="bg-gray-100">
                                         <tr>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">No.</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Event</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Task</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Report
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">No
                                             </th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Deadline
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Event
                                             </th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Sub Task
-                                            </th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Upload
-                                            </th>
-                                            {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Progress
-                                            </th> --}}
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                                Main Task</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                                Report</th>
+                                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Progress</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -119,48 +119,32 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->tasks->event->name }}</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex px-2 py-2">
-                                                        <div class="d-flex flex-column justify-content-center ms-1">
-                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->tasks->name }}
+                                                                {{ $item->event->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex px-2 py-2">
+                                                    <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name }} <!-- Perbaikan di sini -->
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex px-2 py-2">
-                                                        <div class="d-flex flex-column justify-content-center ms-1">
-                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->duetime }} <!-- Perbaikan di sini -->
+                                                                {{ $item->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle ">
-                                                    <a href="/report/task/{{ $id_event }}/{{ $item->tasks->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <i class="fa-solid fa-file fs-6"></i>
+                                                    <a href="/dashboard/report/task/{{ $item->id_event }}/{{ $item->id }}"
+                                                        class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
+                                                        <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <a href="/report/upload/{{ $item->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                        <span class="btn-inner--icon">Upload</span>
-                                                    </a>
+                                                <td>
+                                                    <div class="progress" style="width: 100%; height: 30px;">
+                                                        <div class="progress-bar progress-bar-striped" style="width: {{ $item->progress == null ? '10' : $item->progress }}%; height: 100%;">
+                                                            {{ round($item->progress) }}%
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

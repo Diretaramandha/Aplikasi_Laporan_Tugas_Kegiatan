@@ -73,7 +73,7 @@ class TaskController extends Controller
         toast('Success Create Task', 'success');
         return redirect('/report/create/'.$task->id);
      }
-     public function sub_task_update(Request $request,$id_event,$id_task){
+     public function sub_task_update(Request $request,$id_event,$id_task,$id){
         $validate = Validator::make($request->all(),[
             'name' => ['required'],
             'description' => ['required'],
@@ -84,15 +84,15 @@ class TaskController extends Controller
             return redirect()->back();
         }
 
-        $task = Task::find($id_task);
+        $task = Task::find($id);
         $task->update([
             'name'=> $request->name,
             'description'=> $request->description,
             'id_event'=> $id_event,
-            'tasks_idtask'=> null,
+            'tasks_idtask'=> $id_task,
         ]);
 
         toast('Success Update Task', 'success');
-        return redirect('/task/'.$id_event);
+        return redirect('/task/'.$id_event.'/sub-task/'.$id_task);
      }
 }

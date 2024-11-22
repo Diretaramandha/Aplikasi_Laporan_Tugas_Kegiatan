@@ -36,9 +36,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('/assets/css/corporate-ui-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"> --}}
-    {{-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
-
     <link rel="stylesheet" href="{{ asset('fontawosome/css/all.min.css') }}">
 
 </head>
@@ -255,7 +253,8 @@
         <!-- End Navbar -->
     </main>
     <!--   Core JS Files   -->
-    <script src="{{ asset('/assets/js/core/popper.min.js') }}"></script>
+    {{-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('/assets/js/core/popper.min.js') }}"></script> --}}
     <script src="{{ asset('/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>

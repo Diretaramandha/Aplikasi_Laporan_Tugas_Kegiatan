@@ -28,7 +28,7 @@ class ReportController extends Controller
         $report->save();
 
 
-        return redirect('/task/'.$event->event->id.'/sub-task/'.$event->tasks_idtask);
+        return redirect('/task/'.$event->event->id);
     }
 
     public function report_detail_create(Request $request, $id_report) {

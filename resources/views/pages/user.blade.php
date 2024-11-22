@@ -98,7 +98,9 @@
                             <table id="tabel-data" class="table align-items-center mb-0">
                                 <thead class="bg-gray-100">
                                     <tr>
-                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">User
+                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">No
+                                        </th>
+                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">Name
                                         </th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             No.tel / Address</th>
@@ -106,17 +108,18 @@
                                             Status</th>
                                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                             User Created</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                            Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $item)
+                                    @foreach ($users as $key => $item)
                                     <tr>
                                         <td>
+                                            <p class="text-sm text-secondary mb-0 ms-4">{{ $key+1 }}</p>
+                                        </td>
+                                        <td>
                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
-                                                </div>
                                                 <div class="d-flex flex-column justify-content-center ms-1">
                                                     <h6 class="mb-0 text-sm font-weight-semibold">{{ $item->name }}</h6>
                                                     <p class="text-sm text-secondary mb-0">{{ $item->email }}

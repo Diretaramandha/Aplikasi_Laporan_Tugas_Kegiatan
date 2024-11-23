@@ -17,7 +17,7 @@ class login
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->back();
+            return redirect('/');
         }
         return $next($request);
     }

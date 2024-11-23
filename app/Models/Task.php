@@ -23,9 +23,14 @@ class Task extends Model
     {
         return $this->belongsTo(Task::class, 'tasks_idtask');
     }
+    public function member()
+    {
+        return $this->hasMany(Member::class);
+    }
+
     public function report()
     {
-        return $this->belongsTo(Report::class, 'tasks_idtask');
+        return $this->belongsTo(Report::class); // Atau hasMany jika ada banyak laporan
     }
     public function calculateProgress()
     {

@@ -17,6 +17,7 @@ class AuthController extends Controller
             alert()->info('Login Success','Welcome, '.Auth::user()->name);
             return redirect("/dashboard");
         }
+        alert()->error('ErrorAlert','Lorem ipsum dolor sit amet.');
         return redirect()->back();
     }
     public function logout_user(){

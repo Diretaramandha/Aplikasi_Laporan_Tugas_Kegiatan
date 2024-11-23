@@ -8,6 +8,32 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
+    public function view_event()
+    {
+        $user = Auth::user();
+        $data['events'] = Event::with('user')
+        ->where('create_by', $user->id)
+        ->get();
+        // echo json_encode($data);
+        return view("pages.event", $data);
+    }
+
+    public function view_event_create()
+    {
+        return view("pages.event.create");
+    }
+
+    public function view_event_update($id)
+    {
+        $data['event'] = Event::findOrFail($id);
+        return view("pages.event.update", $data);
+    }
+
+    public function view_event_delete($id)
+    {
+        Event::destroy($id);
+        return redirect('/event');
+    }
     public function event_create(Request $request){
         $validate = $request->validate([
             'name'=> ['required'],

@@ -9,6 +9,39 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+    public function view_report()
+    {
+        $data['report'] = Task::with('event', 'report', 'subTask')
+            ->whereNull('tasks_idtask')
+            ->get();
+
+        return view('pages.report.report-event', $data);
+    }
+
+    public function view_report_task($id_event, $id_task)
+    {
+        $data['task'] = Report::whereHas('tasks', function ($query) use ($id_event, $id_task) {
+            $query->where('id_event', $id_event)
+                ->where('tasks_idtask', $id_task);
+        })
+            ->with('tasks', 'detailReport')
+            ->get();
+
+        $data['id_event'] = $id_event;
+        return view('pages.report.tables_report', $data);
+    }
+
+    public function view_report_create($id_task)
+    {
+        $data['task_report'] = $id_task;
+        return view('pages.report.report-create', $data);
+    }
+
+    public function view_report_detail($id_report)
+    {
+        $data['id_report'] = $id_report;
+        return view('pages.report.report_detail', $data);
+    }
     public function report_create(Request $request,$id_task){
         $validate = $request->validate([
             'name'=>['required','string'],

@@ -38,6 +38,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="{{ asset('fontawosome/css/all.min.css') }}">
+    @include('layout.cdn-css')
 
 </head>
 
@@ -253,13 +254,14 @@
         <!-- End Navbar -->
     </main>
     <!--   Core JS Files   -->
-    {{-- <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('/assets/js/core/popper.min.js') }}"></script> --}}
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('/assets/js/plugins/swiper-bundle.min.js') }}" type="text/javascript"></script>
+    @include('layout.cdn-script')
     <script>
         if (document.getElementsByClassName('mySwiper')) {
             var swiper = new Swiper(".mySwiper", {

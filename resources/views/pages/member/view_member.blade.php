@@ -8,11 +8,9 @@
                     <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Event</a>
-                        </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Task</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Add User</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Task</h6>
+                    <h6 class="font-weight-bold mb-0">Add User</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -60,107 +58,91 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4 px-5">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 ">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-header border-bottom pb-0">
-                            <div class="d-sm-flex align-items-center mb-3">
+                            <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Task</h6>
-                                    <p class="text-sm mb-sm-0">You can see the tasks that are in the main task</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Users list</h6>
+                                    <p class="text-sm">See information about all users</p>
                                 </div>
                                 <div class="ms-auto d-flex">
-                                    <a href="/task/{{ $id_event }}"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5">
-                                        <i class="fi fi-br-angle-double-left" style="font-size: 1rem"></i>
-                                    </a>
-                                    <a href="/task/{{ $id_event }}/sub-task/{{ $id_task }}/create"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
-                                        data-bs-toggle="tooltip" data-bs-title="Add Task">
-                                        <i class="fi fi-br-plus" style="font-size: 1rem"></i>
-                                    </a>
-                                    <a href="/task/{{ $id_event }}" onclick="window.history.back();"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
-                                        data-bs-toggle="tooltip" data-bs-title="Add Report Task">
-                                        <span class="btn-inner--text">
-                                            <i class="fi fi-rr-file-medical-alt" style="font-size: 1rem;"></i>
+                                    <a href="/member/create"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
+                                        <span class="btn-inner--icon">
+                                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
+                                                <path
+                                                    d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
+                                            </svg>
                                         </span>
+                                        <span class="btn-inner--text">Add Member</span>
                                     </a>
                                 </div>
-                                {{-- <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-25">
-                                <span class="btn-inner--text">Back</span>
-                            </a> --}}
                             </div>
                         </div>
-                        <div class="card-body px-4 py-3">
-                            <div class="table-responsive p-0">
-                                <table  id="myTable" class="table align-items-center mb-0 display">
+                        <div class="card-body px-0 py-0">
+                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
+                                {{-- <form action="/add-user" method="POST" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                @csrf
+                                <input type="radio" class="btn-check" name="level" id="radio" value="all" autocomplete="off" checked>
+                                <label class="btn btn-white px-3 mb-0" for="radio">All</label>
+                                <input type="radio" class="btn-check" name="level" id="radio2" value="admin" autocomplete="off">
+                                <label class="btn btn-white px-3 mb-0" for="radio2">Admin</label>
+                                <input type="radio" class="btn-check" name="level" id="radio3" value="member" autocomplete="off">
+                                <label class="btn btn-white px-3 mb-0" for="radio3">Member</label>
+                            </form> --}}
+                                <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
+                                    @csrf
+                                    <span class="input-group-text text-body">
+                                        <button type="submit" class="border-0 bg-transparent w-100">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </span>
+                                    <input type="search" class="form-control" name="search" placeholder="Search">
+                                </form>
+                            </div>
+                            <div class="table-responsive p-0 ">
+                                <table id="tabel-data" class="table align-items-center mb-0">
                                     <thead class="bg-gray-100">
                                         <tr>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                                No.</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                                Task</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">No
+                                            </th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Name Member
+                                            </th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Description</th>
-                                            {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                            Sub Task</th> --}}
+                                                Email</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Member
-                                            </th>
+                                                Task</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Sub task
-                                            </th>
-                                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Action
-                                            </th>
+                                                Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sub_task as $key => $item)
+                                        @foreach ($member as $key => $item)
                                             <tr>
                                                 <td>
-                                                    <p class="fw-bold ms-3 my-2">{{ $key + 1 }}</p>
+                                                    <p class="text-sm text-secondary mb-0 ms-4 ">{{ $key + 1 }}</p>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        {{-- <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
-                                                </div> --}}
-                                                        <div class="d-flex flex-column justify-content-center ms-1">
-                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name }}</h6>
-                                                            {{-- <p class="text-sm text-secondary mb-0">{{ $item->name }}
-                                                    </p> --}}
-                                                        </div>
-                                                    </div>
+                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->user->name }}
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    {{-- <p class="text-sm text-dark font-weight-semibold mb-0">+ {{ $item->des }}</p> --}}
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->description }}</p>
-                                                </td>
-                                                {{-- <td class="align-middle">
-                                            <a href="/task/sub-task/{{ $item->id }}" class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                <span class="btn-inner--icon">
-                                                    <img src="{{ asset('img/task-white.png') }}" alt="" width="16px" height="18px">
-                                                </span>
-                                            </a>
-                                        </td> --}}
-                                                <td class="align-middle text-center">
-                                                    <p class="text-sm text-secondary mb-0">direta</p>
-                                                </td>
-                                                <td class="align-middle d-flex">
-                                                    <a href="/task/{{ $item->event->id }}/sub-task/{{ $item->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5"
-                                                        data-bs-toggle="tooltip" data-bs-title="Detail Task">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fi fi-ss-to-do " style="font-size: 1rem"></i>
-                                                        </span>
-                                                    </a>
+                                                    <p class="text-sm text-secondary mb-0">{{ $item->user->email }}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <a href="/task/{{ $item->event->id }}/sub-task/{{ $id_task }}/update/{{ $item->id }}"
+                                                    <p class="text-sm text-secondary mb-0">{{ $item->tasks->name }}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a href="/member/update/{{ $item->id }}"
                                                         class="text-secondary font-weight-bold text-xs"
-                                                        data-bs-toggle="tooltip" data-bs-title="Edit">
+                                                        data-bs-toggle="tooltip" data-bs-title="Edit Member">
                                                         <svg width="14" height="14" viewBox="0 0 15 16"
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -168,15 +150,13 @@
                                                                 fill="#64748B" />
                                                         </svg>
                                                     </a>
-                                                    <a href="/task/{{ $item->event->id }}/sub-task/{{ $id_task }}/delete/{{ $item->id }}"
-                                                        class="text-secondary font-weight-bold text-xs ms-3"
-                                                        data-bs-toggle="tooltip" data-bs-title="Delete">
+                                                    <a href="member/delete/{{ $item->id }}"
+                                                        class="text-secondary font-weight-bold text-xs ms-2"
+                                                        data-bs-toggle="tooltip" data-bs-title="Edit Member">
                                                         <img src="{{ asset('img/delete.png') }}" alt=""
-                                                            class="" width="18px" height="20px">
+                                                            width="16" height="18" srcset="">
                                                     </a>
-
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -188,4 +168,36 @@
             </div>
         </div>
     </main>
+    {{-- <script>
+    document.querySelectorAll('input[name="btnradiotable"]').forEach((elem) => {
+        elem.addEventListener("change", function(event) {
+            let selectedLevel = event.target.value;
+            fetch(`/add-user?level=${selectedLevel}`, { // Changed to GET
+                    method: 'GET' // Changed to GET
+                    , headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                        , 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                    // No need for body in a GET request
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('#tabel-data tbody').innerHTML = data;
+                });
+            .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.querySelector('#tabel-data tbody').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    });
+
+</script> --}}
 @endsection

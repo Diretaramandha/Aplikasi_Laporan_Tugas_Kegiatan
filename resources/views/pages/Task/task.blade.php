@@ -69,41 +69,30 @@
                                     <p class="text-sm mb-sm-0">You can see the main tasks that are in the event</p>
                                 </div>
                                 <div class="ms-auto d-flex">
-                                    <div class="input-group input-group-sm ms-auto me-2">
-                                        <span class="input-group-text text-body">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Search">
-                                    </div>
-                                    <a href="/task/create/{{ $id }}"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-50">
-                                        {{-- <span class="btn-inner--icon">
-                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                        </svg>
-                                    </span> --}}
-                                        <span class="btn-inner--text">Create Task</span>
-                                    </a>
                                     <a href="/event"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-25">
-                                        {{-- <span class="btn-inner--icon">
-                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                        </svg>
-                                    </span> --}}
-                                        <span class="btn-inner--text">Back</span>
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5">
+                                        <span class="btn-inner--text">
+                                            <i class="fi fi-br-angle-double-left " style="font-size: 1rem"></i>
+                                        </span>
+                                    </a>
+                                    <a href="/task/create/{{ $id }}"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
+                                        data-bs-toggle="tooltip" data-bs-title="Add Task">
+                                        <i class="fi fi-br-plus " style="font-size: 1rem"></i>
+                                    </a>
+                                    <a href="/task/create/{{ $id }}"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
+                                        data-bs-toggle="tooltip" data-bs-title="Add Report Main Task">
+                                        <span class="btn-inner--text">
+                                            <i class="fi fi-rr-file-medical-alt" style="font-size: 1rem"></i>
+                                        </span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
+                        <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center justify-content-center mb-0">
+                                <table  id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">
@@ -131,43 +120,29 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
-                                                        {{-- <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
-                                                </div> --}}
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
                                                                 {{ $item->name }}</h6>
-                                                            {{-- <p class="text-sm text-secondary mb-0">{{ $item->name }}
-                                                    </p> --}}
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {{-- <p class="text-sm text-dark font-weight-semibold mb-0">+ {{ $item->des }}</p> --}}
                                                     <p class="text-sm text-secondary mb-0">{{ $item->description }}</p>
                                                 </td>
                                                 <td>
-                                                    {{-- <p class="text-sm text-dark font-weight-semibold mb-0">+ {{ $item->des }}</p> --}}
                                                     <p class="text-sm text-secondary mb-0">Direta</p>
                                                 </td>
                                                 <td class="align-middle d-flex">
                                                     <a href="/task/{{ $item->event->id }}/sub-task/{{ $item->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
+                                                        class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5"
+                                                        data-bs-toggle="tooltip" data-bs-title="Detail Task">
                                                         <span class="btn-inner--icon">
-                                                            <img src="{{ asset('img/task-white.png') }}" alt=""
-                                                                width="16px" height="18px">
+                                                            <i class="fi fi-ss-to-do " style="font-size: 1rem"></i>
                                                         </span>
                                                     </a>
                                                 </td>
-                                                {{-- <td class="align-middle">
-                                            <a href="/report/{{ $item->id }}" class="btn btn-sm btn-dark btn-icon me-2 my-2 opacity-5">
-                                                <span class="btn-inner--icon">
-                                                    <img src="{{ asset('img/report-white.png') }}" alt="" width="16px" height="18px">
-                                                </span>
-                                            </a>
-                                        </td> --}}
                                                 <td class="align-middle text-center">
-                                                    <a href="/task/{{ $item->event->id }}/update/{{ $item->id }}"
+                                                    <a href="/task/{{ $item->event->id }}/update/{{ $item->id }} "
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-bs-toggle="tooltip" data-bs-title="Edit">
                                                         <svg width="14" height="14" viewBox="0 0 15 16"

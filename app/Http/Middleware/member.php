@@ -16,9 +16,9 @@ class member
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::user()->level == 'member') {
-            return redirect()->back();
+        if (auth()->user() || auth()->user()->level == 'member') {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->back();
     }
 }

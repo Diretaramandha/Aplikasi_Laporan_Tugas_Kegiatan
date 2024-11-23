@@ -71,31 +71,8 @@
                         </div>
                     </div>
                     <div class="card-body px-0 py-0">
-                        <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
-                            {{-- <form action="/add-user" method="POST" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                @csrf
-                                <input type="radio" class="btn-check" name="level" id="radio" value="all" autocomplete="off" checked>
-                                <label class="btn btn-white px-3 mb-0" for="radio">All</label>
-                                <input type="radio" class="btn-check" name="level" id="radio2" value="admin" autocomplete="off">
-                                <label class="btn btn-white px-3 mb-0" for="radio2">Admin</label>
-                                <input type="radio" class="btn-check" name="level" id="radio3" value="member" autocomplete="off">
-                                <label class="btn btn-white px-3 mb-0" for="radio3">Member</label>
-                            </form> --}}
-                            <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
-                                @csrf
-                                <span class="input-group-text text-body">
-                                    <button type="submit" class="border-0 bg-transparent w-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </span>
-                                <input type="search" class="form-control" name="search" placeholder="Search">
-                            </form>
-                        </div>
-                        <div class="table-responsive p-0 ">
-                            <table id="tabel-data" class="table align-items-center mb-0">
+                        <div class="table-responsive px-4 py-3 ">
+                            <table id="myTable" class="table align-items-center mb-0 display">
                                 <thead class="bg-gray-100">
                                     <tr>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7">No
@@ -161,36 +138,4 @@
         </div>
     </div>
 </main>
-{{-- <script>
-    document.querySelectorAll('input[name="btnradiotable"]').forEach((elem) => {
-        elem.addEventListener("change", function(event) {
-            let selectedLevel = event.target.value;
-            fetch(`/add-user?level=${selectedLevel}`, { // Changed to GET
-                    method: 'GET' // Changed to GET
-                    , headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                        , 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
-                    // No need for body in a GET request
-                })
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('#tabel-data tbody').innerHTML = data;
-                });
-            .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.querySelector('#tabel-data tbody').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
-        });
-    });
-
-</script> --}}
 @endsection

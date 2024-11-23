@@ -4,9 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AddUserController extends Controller
+class UserController extends Controller
 {
+    public function view_user()
+    {
+        $data['users'] = User::all();
+        return view("pages.user", $data);
+    }
+
+    public function view_user_create()
+    {
+        return view("pages.user.create");
+    }
+
+    public function view_user_update($id)
+    {
+        $data['user'] = User::findOrFail($id);
+        return view("pages.user.update", $data);
+    }
+
+    public function view_user_delete($id)
+    {
+        User::destroy($id);
+        return redirect('/user');
+    }
+    public function view_profile()
+    {
+        $data['user'] = Auth::user();
+        return view('pages.profile', $data);
+    }
     // ... inside AddUser Controller
     public function user_search(Request $request)
     {

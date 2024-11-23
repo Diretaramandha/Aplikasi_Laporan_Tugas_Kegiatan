@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
-    public function events(){
-        
-        return $this->hasMany(Event::class,'create_by');
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'create_by');
+    }
+    public function member()
+    {
+        return $this->hasOne(Member::class);
     }
     // protected $fillable = [
     //     'name',

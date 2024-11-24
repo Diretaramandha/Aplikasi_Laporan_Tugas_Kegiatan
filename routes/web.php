@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', redirect('/sign-in'));
+Route::get('/', function(){
+    return redirect('/sign-in');
+});
 
 Route::view('/sign-in', 'pages.sign-in');
 Route::post('/auth', [AuthController::class, 'auth_user']);
@@ -95,9 +97,9 @@ Route::middleware('login')->group(function () {
     Route::prefix('report')->group(function () {
         Route::get('/', [ReportController::class, 'view_report']);
         Route::get('task/{id_event}/{id_task}', [ReportController::class, 'view_report_task']);
-        Route::get('{id_event}/{id_task}/create', [ReportController::class, 'view_report_create']);
+        Route::get('create/{id_event}/{id_task}', [ReportController::class, 'view_report_create']);
         Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
-        Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_create']);
+        Route::post('create/{id_event}/{id_task}', [ReportController::class, 'report_create']);
         Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);
     });
 });

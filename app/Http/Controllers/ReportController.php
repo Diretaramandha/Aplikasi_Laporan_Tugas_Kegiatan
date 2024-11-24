@@ -32,9 +32,10 @@ class ReportController extends Controller
         return view('pages.report.tables_report', $data);
     }
 
-    public function view_report_create($id_task)
+    public function view_report_create($id_event,$id_task)
     {
         $data['task'] = Task::find( $id_task );
+        $data['id_event'] = $id_event;
         $data['task_report'] = $id_task;
         return view('pages.report.report-create', $data);
     }
@@ -45,7 +46,7 @@ class ReportController extends Controller
 
         return view('pages.report.report_detail', $data);
     }
-    public function report_create(Request $request,$id_task){
+    public function report_create(Request $request,$id_event,$id_task){
         $validate = $request->validate([
             'name'=>['required','string'],
             'duetime'=>['required',],
@@ -64,7 +65,7 @@ class ReportController extends Controller
         $report->save();
 
 
-        return redirect('/task/'.$event->event->id);
+        return redirect('/report/task/'.$id_event.'/'.$id_task);
     }
 
     public function report_detail_create(Request $request, $id_report) {

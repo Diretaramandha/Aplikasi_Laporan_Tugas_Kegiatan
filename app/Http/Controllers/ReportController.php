@@ -40,6 +40,12 @@ class ReportController extends Controller
         return view('pages.report.report-create', $data);
     }
 
+    public function view_report_delete($id_report){
+        Report::where('id',$id_report)->delete();
+
+        return redirect()->back();
+    }
+
     public function view_report_detail($id_report)
     {
         $data['id_report'] = $id_report;

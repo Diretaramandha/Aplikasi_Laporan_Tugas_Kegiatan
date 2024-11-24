@@ -98,6 +98,7 @@ Route::middleware('login')->group(function () {
         Route::get('/', [ReportController::class, 'view_report']);
         Route::get('task/{id_event}/{id_task}', [ReportController::class, 'view_report_task']);
         Route::get('create/{id_event}/{id_task}', [ReportController::class, 'view_report_create']);
+        Route::get('delete/{id_report}', [ReportController::class, 'view_report_delete']);
         Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
         Route::post('create/{id_event}/{id_task}', [ReportController::class, 'report_create']);
         Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);

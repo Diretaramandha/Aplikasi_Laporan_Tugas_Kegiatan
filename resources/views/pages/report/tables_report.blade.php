@@ -78,13 +78,14 @@
                                         </span>
                                         <input type="text" class="form-control form-control-sm" placeholder="Search">
                                     </div>
-                                    {{-- <a href=""
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-50">
-                                        <span class="btn-inner--text">Create Task</span>
-                                    </a> --}}
-                                    <a href="javascript:void(0);" onclick="window.history.back();"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-25">
-                                        <span class="btn-inner--text">Back</span>
+                                    <a href="/task/{{ $id_event }}/sub-task/{{ $id_task }}"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5">
+                                        <i class="fi fi-br-angle-double-left" style="font-size: 1rem"></i>
+                                    </a>
+                                    <a href="/report/create/{{ $id_event }}/{{ $id_task }}"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
+                                        data-bs-toggle="tooltip" data-bs-title="Add Report">
+                                        <i class="fi fi-br-plus" style="font-size: 1rem"></i>
                                     </a>
                                 </div>
                             </div>

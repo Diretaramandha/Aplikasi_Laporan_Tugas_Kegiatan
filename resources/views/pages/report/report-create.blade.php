@@ -55,8 +55,8 @@
                         <div class="card-header border-bottom pb-0">
                             <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Report Task</h6>
-                                    <p class="text-sm">Write a report</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Report Task  : {{ $task->name }}</h6>
+                                    <p class="text-sm">add report task</p>
                                 </div>
                                 <div class="ms-auto d-flex">
                                     <a href="/user" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">

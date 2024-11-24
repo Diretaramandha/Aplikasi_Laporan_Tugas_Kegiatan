@@ -28,7 +28,7 @@ class TaskController extends Controller
 
     public function view_task_update($id_event, $id)
     {
-        $data['task'] = Task::with('event')->findOrFail($id);
+        $data['task'] = Task::with(relations: 'event')->findOrFail($id);
         return view('pages.Task.update', $data);
     }
 

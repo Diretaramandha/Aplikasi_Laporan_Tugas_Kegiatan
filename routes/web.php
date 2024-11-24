@@ -74,21 +74,30 @@ Route::middleware('login')->group(function () {
 
     // Rute untuk task
     Route::prefix('task')->group(function () {
-        Route::get('{id}', [TaskController::class, 'view_task']);
+        Route::get('{id_event}', [TaskController::class, 'view_task']);
         Route::get('create/{id}', [TaskController::class, 'view_task_create']);
         Route::get('{id_event}/update/{id}', [TaskController::class, 'view_task_update']);
         Route::get('{id_event}/delete/{id}', [TaskController::class, 'view_task_delete']);
         Route::post('create/{id}', [TaskController::class, 'task_create']);
         Route::post('{id_event}/update/{id}', [TaskController::class, 'task_update']);
+
+        Route::prefix('{id_event}/sub-task')->group(function () {
+            Route::get('{id_task}', [TaskController::class, 'view_sub_task']);
+            Route::get('{id_task}/create', [TaskController::class, 'view_sub_task_create']);
+            Route::get('{id_task}/update/{id}', [TaskController::class, 'view_sub_task_update']);
+            Route::get('{id_task}/delete/{id}', [TaskController::class, 'view__sub_task_delete']);
+            Route::post('{id_task}/create', [TaskController::class, 'sub_task_create']);
+            Route::post('{id_task}/update/{id}', [TaskController::class, 'sub_task_update']);
+        });
     });
 
     // Rute untuk report
     Route::prefix('report')->group(function () {
         Route::get('/', [ReportController::class, 'view_report']);
         Route::get('task/{id_event}/{id_task}', [ReportController::class, 'view_report_task']);
-        Route::get('create/{id_task}', [ReportController::class, 'view_report_create']);
+        Route::get('{id_event}/{id_task}/create', [ReportController::class, 'view_report_create']);
         Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
-        Route::post('create/{id_task}', [ReportController::class, 'report_create']);
-        Route::post('upload/{id_report}', [ReportController::class, 'report_detail_create']);
+        Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_create']);
+        Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);
     });
 });

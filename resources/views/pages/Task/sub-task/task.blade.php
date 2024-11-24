@@ -78,9 +78,9 @@
                                         data-bs-toggle="tooltip" data-bs-title="Add Task">
                                         <i class="fi fi-br-plus" style="font-size: 1rem"></i>
                                     </a>
-                                    <a href="/task/{{ $id_event }}" onclick="window.history.back();"
+                                    <a href="/report/task/{{ $id_event }}/{{ $id_task }}" onclick="window.history.back();"
                                         class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
-                                        data-bs-toggle="tooltip" data-bs-title="Add Report Task">
+                                        data-bs-toggle="tooltip" data-bs-title="Report Main Task">
                                         <span class="btn-inner--text">
                                             <i class="fi fi-rr-file-medical-alt" style="font-size: 1rem;"></i>
                                         </span>

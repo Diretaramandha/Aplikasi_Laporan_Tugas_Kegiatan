@@ -128,13 +128,13 @@ class UserController extends Controller
         'nohp' => $request->nohp,
         'address' => $request->address,
         'level' => $request->level,
+        'password' => bcrypt($request->password),
     ]);
 
-    if (!empty($request->password)) {
-        $user->update([
-            'password' => bcrypt($request->password),
-        ]);
-    }
+    // if (!empty($request->password)) {
+    //     $user->update([
+    //     ]);
+    // }
 
     toast('Success update your profile', 'success');
     return redirect('/profile');

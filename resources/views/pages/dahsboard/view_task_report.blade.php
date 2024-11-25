@@ -68,14 +68,6 @@
                                     <p class="text-sm">make an event and of course the members will</p>
                                 </div>
                                 <div class="ms-auto d-flex">
-                                    {{-- <a href="/event/create"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
-                                        <span class="btn-inner--icon">
-                                            <img src="{{ asset('assets/img/logos/event-add.png') }}" alt=""
-                                                width="16px" height="18px">
-                                        </span>
-                                        <span class="btn-inner--text  ms-2">Detail Report</span>
-                                    </a> --}}
                                     <a href="javascript:void(0);" onclick="window.history.back();"
                                         class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-100">
                                         <span class="btn-inner--text">Back</span>
@@ -83,25 +75,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
-                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
-                                <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
-                                    @csrf
-                                    <span class="input-group-text text-body">
-                                        <button type="submit" class="border-0 bg-transparent w-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </span>
-                                    <input type="search" class="form-control" name="search" placeholder="Search">
-                                </form>
-                            </div>
+                        <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0 ">
-                                <table id="tabel-data" class="table align-items-center mb-0">
+                                <table id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">No

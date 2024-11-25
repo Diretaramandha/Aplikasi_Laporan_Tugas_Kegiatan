@@ -158,23 +158,25 @@
             </div>
             <hr class="my-0">
             <div class="row my-4">
-                {{-- <div class="col-xl-3 col-sm-6 mb-xl-0">
-                <div class="card border shadow-xs mb-4">
-                    <div class="card-body text-start p-3 w-100">
-                        <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
-                            <img src="{{ asset('img/user-white.png') }}" width="20px" height="20px" alt="" srcset="">
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="w-100">
-                                    <p class="text-sm text-secondary mb-1">Total of all users</p>
-                                    <h4 class="mb-2 font-weight-bold">{{ $user->count() }}</h4>
+                <div class="col-xl-3 col-sm-6 mb-xl-0">
+                    <div class="card border shadow-xs mb-4">
+                        <div class="card-body text-start p-3 w-100">
+                            <div
+                                class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
+                                <img src="{{ asset('assets/img/logos/event.png') }}" width="20px" height="20px"
+                                    alt="" srcset="">
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="w-100">
+                                        <p class="text-sm text-secondary mb-1">Total Your events :</p>
+                                        <h4 class="mb-2 font-weight-bold">{{ $event->count() }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-body text-start p-3 w-100">
@@ -187,14 +189,14 @@
                                 <div class="col-12">
                                     <div class="w-100">
                                         <p class="text-sm text-secondary mb-1">Total of all events :</p>
-                                        <h4 class="mb-2 font-weight-bold">{{ $event->count() }}</h4>
+                                        <h4 class="mb-2 font-weight-bold">{{ $event_all }}</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0">
+                {{-- <div class="col-xl-3 col-sm-6 mb-xl-0">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-body text-start p-3 w-100">
                             <div
@@ -213,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-12 col-md-6">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-header border-bottom pb-0">
@@ -222,26 +224,11 @@
                                     <h6 class="font-weight-semibold text-lg mb-0">Event</h6>
                                     <p class="text-sm mb-sm-0">Your event</p>
                                 </div>
-                                <div class="ms-auto d-flex">
-                                    <div class="input-group input-group-sm ms-auto me-2">
-                                        <span class="input-group-text text-body">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Search">
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
+                        <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center justify-content-center mb-0">
+                                <table id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">

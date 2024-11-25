@@ -7,6 +7,7 @@ use App\Models\Report;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -24,36 +25,47 @@ class MemberController extends Controller
             ->whereDoesntHave('member') // Pastikan relasi 'member' sudah didefinisikan di model User
             ->get();
 
-        $data['tasks'] = Report::with('tasks') // Mengambil relasi task
+        $data['tasks'] = Report::with('tasks.member') // Mengambil relasi task
             ->whereHas('tasks', function ($query) {
                 $query->whereDoesntHave('member'); // Mengambil tugas yang tidak memiliki relasi dengan members
             })
             ->get();
+        // $data['tasks'] = Report::with('tasks.member')->get();
 
         // echo json_encode($data['tasks']);
         return view("pages.member.create", $data);
     }
+    public function view_task_member()
+    {
+        $user = Auth::user();
+        $data['member'] = Member::where('user_id', $user->id)
+        ->with('user','tasks')
+        ->get();
+
+        return view('pages.member.tasks.view_tasks_member',$data);
+    }
+    public function view_task_member_detail($id_event, $id_task)
+{
+    $user = Auth::user();
+    $data['tasks'] = Report::where('tasks_idtask', $id_task)
+        ->whereHas('tasks.member', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->get();
+
+    return view('pages.member.tasks.view_tasks_upload', $data);
+}
+
+
     public function view_member_update($id_member)
     {
+        $data['member'] = Member::findOrFail($id_member);
+        $data['users'] = User::where('level', 'member')->get();
+        $data['tasks'] = Report::with('tasks')->whereHas('tasks', function ($query) {
+            // $query->whereDoesntHave('member');
+        })->get();
 
-            $data['member'] = Member::with(['user', 'tasks.report'])
-                ->where('id', $id_member)
-                ->first();
-
-        // Ambil semua pengguna yang memiliki level 'member' dan tidak memiliki relasi 'member'
-        $data['users'] = User::where('level', 'member')
-            ->whereDoesntHave('member') // Pastikan relasi 'member' sudah didefinisikan di model User
-            ->get();
-
-        // Ambil semua tugas yang tidak memiliki anggota
-        $data['tasks'] = Report::with('tasks') // Mengambil relasi task
-            ->whereHas('tasks', function ($query) {
-                $query->whereDoesntHave('member'); // Mengambil tugas yang tidak memiliki relasi dengan members
-            })
-            ->get();
-
-        echo json_encode($data);
-        // return view("pages.member.update", $data);
+        return view("pages.member.update", $data);
     }
     public function member_delete($id_member)
     {
@@ -61,7 +73,7 @@ class MemberController extends Controller
         toast('Success Delete Member', 'success');
         return redirect("/member");
     }
-    public function member_update(Request $request)
+    public function member_update(Request $request,$id_member)
     {
         $create = $request->validate([
             'user_id' => ['required'],
@@ -71,10 +83,11 @@ class MemberController extends Controller
             toast('Failed Create Member', 'warning');
             return redirect()->back();
         }
-        $member = new Member();
-        $member->user_id = $request->user_id;
-        $member->task_id = $request->task_id;
-        $member->save();
+        $member = Member::where('id',$id_member)->first();
+        $member->update([
+            'user_id' => $request->user_id,
+            'task_id' => $request->task_id,
+        ]);
 
         toast('Success Create Member', 'success');
         return redirect('/member');

@@ -82,7 +82,7 @@
                         <div class="card-body px-0 py-0">
                             <form action="/member/update/{{ $member->id }}" method="post">
                                 @csrf
-                                @method('PUT') <!-- Jika Anda menggunakan metode PUT untuk update -->
+                                @method('PUT') <!-- Menambahkan method PUT untuk update -->
                                 <div class="row mx-3">
                                     <div class="col-sm-3 col-md-6 col-lg-12 my-2">
                                         <label for="user">User  :</label>
@@ -98,12 +98,10 @@
                                     <div class="col-sm-3 col-md-6 col-lg-12 my-2">
                                         <label for="task">Task :</label>
                                         <select name="task_id" id="task" class="form-select">
-                                            <option value="{{ $member->tasks->id }}" {{ $member->tasks->id == $member->task_id ? 'selected' : '' }}>
-                                                Name : {{ $member->tasks->name  }} | Duetime : {{ $member->tasks->report->duetime }}
-                                            </option>
-                                            @foreach ($tasks as $task)
-                                                <option value="{{ $task->tasks->id }}" {{ $task->tasks->id == $member->task_id ? 'selected' : '' }}>
-                                                    Name : {{ $task->tasks->name  }} | Duetime : {{ $task->duetime }}
+                                            <option value=""></option>
+                                            @foreach ($tasks as $item)
+                                                <option value="{{ $item->tasks->id }}" {{ $item->tasks->id == $member->task_id ? 'selected' : '' }}>
+                                                    Name : {{ $item->tasks->name }} | Name Report : {{ $item->name }} | Duetime : {{ $item->duetime }}
                                                 </option>
                                             @endforeach
                                         </select>

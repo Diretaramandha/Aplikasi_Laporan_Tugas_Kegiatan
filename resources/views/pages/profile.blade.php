@@ -118,7 +118,7 @@
                                             <div class="col-6 py-3">
                                                 <label for="name" class="">Password :</label>
                                                 <input type="password" name="pasword" id=""
-                                                    class="form-control" value="" placeholder="Enter Change Password">
+                                                    class="form-control" value="{{ $user->password }}" placeholder="Enter Change Password">
                                             </div>
                                             <div class="col-12 py-3">
                                                 <input type="submit" value="Change Your Profile" id=""

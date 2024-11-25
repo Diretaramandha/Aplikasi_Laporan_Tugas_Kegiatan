@@ -76,24 +76,8 @@
                             </div>
                         </div>
                         <div class="card-body px-0 py-0">
-                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
-                                <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
-                                    @csrf
-                                    <span class="input-group-text text-body">
-                                        <button type="submit" class="border-0 bg-transparent w-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </span>
-                                    <input type="search" class="form-control" name="search" placeholder="Search">
-                                </form>
-                            </div>
-                            <div class="table-responsive p-0 ">
-                                <table id="tabel-data" class="table align-items-center mb-0">
+                            <div class="table-responsive px-4 py-3">
+                                <table id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">No
@@ -110,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($task as $key => $item)
+                                        @foreach ($tasks as $key => $task)
                                             <tr>
                                                 <td>
                                                     <p class="fw-bold ms-3 my-2">{{ $key + 1 }}</p>
@@ -119,7 +103,7 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->event->name }}
+                                                                {{ $task->event->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -128,21 +112,21 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name }}
+                                                                {{ $task->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle ">
-                                                    <a href="/dashboard/report/task/{{ $item->id_event }}/{{ $item->id }}"
+                                                    <a href="/dashboard/report/task/{{ $task->id_event }}/{{ $task->id }}"
                                                         class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
                                                         <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <div class="progress" style="width: 100%; height: 30px;">
-                                                        <div class="progress-bar progress-bar-striped" style="width: {{ $item->progress == null ? '10' : $item->progress }}%; height: 100%;">
-                                                            {{ round($item->progress) }}%
+                                                        <div class="progress-bar progress-bar-striped" style="width: {{ round($task->progress) == 0 ? '10' : $task->progress }}%; height: 100%;">
+                                                            {{ round($task->progress) }}%
                                                         </div>
                                                     </div>
                                                 </td>

@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ExportExcelController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return redirect('/sign-in');
 });
 
@@ -62,6 +63,11 @@ Route::middleware('login')->group(function () {
             Route::post('/create', [MemberController::class, 'member_create']);
             Route::put('/update/{id}', [MemberController::class, 'member_update']);
         });
+
+        Route::prefix('member/task')->group(function () {
+            Route::get('/', [MemberController::class,'view_task_member']);
+            Route::get('{id_user}/{id_task}', [MemberController::class,'view_task_member_detail']);
+        });
     });
 
     // Rute untuk event dan task (bisa diakses oleh admin dan member)
@@ -98,9 +104,20 @@ Route::middleware('login')->group(function () {
         Route::get('/', [ReportController::class, 'view_report']);
         Route::get('task/{id_event}/{id_task}', [ReportController::class, 'view_report_task']);
         Route::get('create/{id_event}/{id_task}', [ReportController::class, 'view_report_create']);
+        Route::get('update/{id_event}/{id_task}/{id_report}', [ReportController::class, 'view_report_update']);
         Route::get('delete/{id_report}', [ReportController::class, 'view_report_delete']);
         Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
+        Route::post('upload/{id_report}', [ReportController::class, 'report_detail']);
         Route::post('create/{id_event}/{id_task}', [ReportController::class, 'report_create']);
-        Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);
+        Route::post('update/{id_event}/{id_task}/{id_report}', [ReportController::class, 'report_update']);
+        // Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);
+    });
+
+    // Rute untuk Export Excel
+    Route::prefix('export-excel')->group(function () {
+        Route::get('/', [ExportExcelController::class, 'view_export']);
+        Route::get('tasks/{id_event}', [ExportExcelController::class, 'view_export_tasks']);
+        Route::get('tasks/{id_event}', [ExportExcelController::class, 'view_export_tasks']);
+        Route::get('tasks/{id_event}/export', [ExportExcelController::class, 'exportTasksToExcel']);
     });
 });

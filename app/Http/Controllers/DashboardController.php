@@ -12,28 +12,46 @@ use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
+    // public function calculateProgress($subTasks)
+    // {
+    //     $totalSubTasks = $subTasks->count();
+    //     $completedSubTasks = 0;
+
+    //     foreach ($subTasks as $subTask) {
+    //         $completedSubTasks += $subTask->status === 'completed' ? 1 : 0;
+    //         // Jika sub-task memiliki sub-task lain, panggil fungsi ini secara rekursif
+    //         if ($subTask->subTasks->isNotEmpty()) {
+    //             $completedSubTasks += $this->calculateProgress($subTask->subTasks);
+    //         }
+    //     }
+
+    //     return $totalSubTasks > 0 ? ($completedSubTasks / $totalSubTasks) * 100 : 0;
+    // }
     public function view_dashboard()
     {
         $user = Auth::user();
         $data['event'] = Event::with('user')
             ->where('create_by', $user->id)
             ->get();
+        $data['event_all'] = Event::all()->count();
 
-        $data['member'] = Member::all();
+
+        // $data['member'] = Member::all();
         return view("pages.dahsboard.dashboard", $data);
     }
     public function view_report_main_tasks($id_event)
     {
-        $data['task'] = Task::with('event', 'tasks')
+        $data['tasks'] = Task::with('event', 'tasks') // Pastikan Anda memuat relasi sub-task
             ->where('id_event', $id_event)
             ->whereNull('tasks_idtask')
             ->get();
 
         // Hitung progress untuk setiap main task
-        foreach ($data['task'] as $item) {
+        foreach ($data['tasks'] as $item) {
             $item->progress = $item->calculateProgress();
-                Log::info("Task ID: {$item->id}, Progress: {$item->progress}");
+            Log::info("Task ID: {$item->id}, Progress: {$item->progress}");
         }
+
         return view('pages.dahsboard.view_main_report', $data);
     }
     public function view_report_tasks($id_event, $id_task)

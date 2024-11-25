@@ -24,7 +24,7 @@ class User extends Authenticatable
     }
     public function member()
     {
-        return $this->hasOne(Member::class);
+        return $this->hasOne(Member::class,'user_id');
     }
     // protected $fillable = [
     //     'name',

@@ -97,6 +97,7 @@
                                             @foreach ($tasks as $key => $item)
                                                 <option value="{{ $item->tasks->id }}">
                                                     <li>Name : {{ $item->tasks->name }}</li>
+                                                    <li>| Name Report : {{ $item->name }}</li>
                                                     <li>| Duetime : {{ $item->duetime }}</li>
                                                 </option>
                                             @endforeach

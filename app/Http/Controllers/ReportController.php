@@ -39,6 +39,14 @@ class ReportController extends Controller
         $data['task_report'] = $id_task;
         return view('pages.report.report-create', $data);
     }
+    public function view_report_update($id_event,$id_task,$id_report)
+    {
+        $data['report'] = Report::find($id_report);
+        $data['task'] = Task::find( $id_task );
+        $data['id_event'] = $id_event;
+        $data['task_report'] = $id_task;
+        return view('pages.report.report-update ', $data);
+    }
 
     public function view_report_delete($id_report){
         Report::where('id',$id_report)->delete();
@@ -50,7 +58,7 @@ class ReportController extends Controller
     {
         $data['id_report'] = $id_report;
 
-        return view('pages.report.report_detail', $data);
+        return view('pages.detail_report.report_detail', $data);
     }
     public function report_create(Request $request,$id_event,$id_task){
         $validate = $request->validate([
@@ -73,8 +81,28 @@ class ReportController extends Controller
 
         return redirect('/report/task/'.$id_event.'/'.$id_task);
     }
+    public function report_update(Request $request,$id_event,$id_task, $id_report){
+        $validate = $request->validate([
+            'name'=>['required','string'],
+            'duetime'=>['required',],
+        ]);
 
-    public function report_detail_create(Request $request, $id_report) {
+        if (!$validate) {
+            return redirect()->back();
+        }
+
+        $report = Report::where('id',$id_report);
+        $report->update([
+            'name'=> $request->name,
+            'duetime'=> $request->duetime,
+            'tasks_idtask'=> $id_task,
+        ]);
+
+
+        return redirect('/report/task/'.$id_event.'/'.$id_task);
+    }
+
+    public function report_detail(Request $request, $id_report) {
         $validate = $request->validate([
             'description' => ['required', 'string'],
             'datetime' => ['required'],
@@ -100,6 +128,7 @@ class ReportController extends Controller
         $detailreport->id_report = $id_report;
         $detailreport->save();
 
-        return redirect('/report');
+        return redirect('/member/task');
     }
+
 }

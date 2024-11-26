@@ -88,13 +88,15 @@
                                                 Main Task</th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                 Report</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                                Tasks</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                                 Progress</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($tasks as $key => $task)
+                                        @foreach ($tasks as $key => $item)
                                             <tr>
                                                 <td>
                                                     <p class="fw-bold ms-3 my-2">{{ $key + 1 }}</p>
@@ -103,7 +105,7 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $task->event->name }}
+                                                                {{ $item->tasks->event->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -112,21 +114,30 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $task->name }}
+                                                                {{ $item->tasks->name }}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle ">
-                                                    <a href="/dashboard/report/task/{{ $task->id_event }}/{{ $task->id }}"
+                                                    <a href="/dashboard/report/task/{{ $item->tasks->id_event }}/{{ $item->tasks->id }}"
                                                         class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
                                                         <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <div class="progress" style="width: 100%; height: 30px;">
-                                                        <div class="progress-bar progress-bar-striped" style="width: {{ round($task->progress) == 0 ? '10' : $task->progress }}%; height: 100%;">
-                                                            {{ round($task->progress) }}%
+                                                        <div class="progress-bar progress-bar-striped" style="width: {{ $item->progress == 0 ? '10' : round($item->progress) }}%; height: 100%;">
+                                                            {{ round($item->progress) }}%
                                                         </div>
                                                     </div>
                                                 </td>

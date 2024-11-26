@@ -115,7 +115,7 @@
                                                                 belum ada report
                                                             @else
                                                                 @foreach ($item->report as $report)
-                                                                    {{ $report->name }} ,
+                                                                    <div>{{ $report->name }}</div>
                                                                 @endforeach
                                                             @endif
                                                         </h6>

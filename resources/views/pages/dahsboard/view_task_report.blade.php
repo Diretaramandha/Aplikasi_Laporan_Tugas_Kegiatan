@@ -92,7 +92,6 @@
                                                 Sub Task</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                                 Progress</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -123,20 +122,21 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->name}}
+                                                                {{ $item->name }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle ">
-                                                    <a href="/dashboard/report/task/{{ $item->tasks->id_event}}/{{ $item->tasks->id }}"
+                                                    <a href="/dashboard/report/task/{{ $item->tasks->id_event }}/{{ $item->tasks->id }}"
                                                         class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
                                                         <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <div class="progress" style="width: 100%; height: 30px;">
-                                                        <div class="progress-bar progress-bar-striped" style="width: {{ $item->progress == null ? '10' : $item->progress }}%; height: 100%;">
+                                                        <div class="progress-bar progress-bar-striped"
+                                                            style="width: {{ $item->progress == null ? '10' : $item->progress }}%; height: 100%;">
                                                             {{ round($item->progress) }}%
                                                         </div>
                                                     </div>

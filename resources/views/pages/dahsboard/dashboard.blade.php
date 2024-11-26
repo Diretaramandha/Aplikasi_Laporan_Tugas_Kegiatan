@@ -240,7 +240,9 @@
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                 Date</th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                View Report</th>
+                                                View Progress Task</th>
+                                            {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                                Progress Event</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -263,10 +265,17 @@
                                                 <p class="text-sm text-secondary mb-0">{{ $item->date }}</p>
                                             </td>
                                             <td class="">
-                                                <a href="/dashboard/report/{{ $item->id }}" class="btn btn-secondary opacity-6 my-2">
-                                                    <i class="fa-solid fa-eye"></i>
+                                                <a href="/dashboard/report/{{ $item->id }}" class="btn btn-secondary opacity-6 my-2" data-bs-toggle="tooltip" data-bs-title="Progress Task">
+                                                    <i class="fa-solid fa-bars-progress" style="font-size: 1rem"></i>
                                                 </a>
                                             </td>
+                                            {{-- <td>
+                                                <div class="progress" style="width: 100%; height: 30px;">
+                                                    <div class="progress-bar progress-bar-striped" style="width: {{ $event->progress == 0 ? '10' : round($event->progress) }}%; height: 100%;">
+                                                        {{ round($event->progress) }}%
+                                                    </div>
+                                                </div>
+                                            </td> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>

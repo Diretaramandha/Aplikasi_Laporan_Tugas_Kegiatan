@@ -33,16 +33,4 @@ class Task extends Model
         return $this->hasMany(Report::class,'tasks_idtask');
     }
 
-    public function calculateProgress()
-    {
-        $subTasks = $this->tasks; // Ambil semua sub-tasks
-        if ($subTasks->isEmpty()) {
-            return 0; // Jika tidak ada sub-tasks, progress 0%
-        }
-
-        $totalProgress = $subTasks->sum('progress'); // Jumlahkan semua progress sub-tasks
-        $totalCount = $subTasks->count(); // Hitung jumlah sub-tasks
-
-        return round($totalProgress / $totalCount); // Hitung rata-rata progress
-    }
 }

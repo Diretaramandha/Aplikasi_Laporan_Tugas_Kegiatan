@@ -94,13 +94,13 @@ class DashboardController extends Controller
     {
         if ($request->id_tasks) {
             $tasks = Task::where('tasks_idtask',$request->id_tasks)
-            // ->where('id_event',$request->id_event)
-            // ->with('event')
+            ->where('id_event',$request->id_event)
+            ->with('event')
             ->get();
         } else {
             $tasks = Task::whereNull('tasks_idtask')
-            // ->where('id_event',$request->id_event)
-            // ->with('event')
+            ->where('id_event',$request->id_event)
+            ->with('event')
             ->get();
     }
 

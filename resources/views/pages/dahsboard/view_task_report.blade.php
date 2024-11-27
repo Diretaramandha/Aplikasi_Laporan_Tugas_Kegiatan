@@ -86,8 +86,8 @@
                                             </th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                 Task</th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Report</th>
+                                            {{-- <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                                Report</th> --}}
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                 Sub Task</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
@@ -95,7 +95,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($task as $key => $item)
+                                        @foreach ($tasks as $key => $item)
                                             <tr>
                                                 <td>
                                                     <p class="fw-bold ms-3 my-2">{{ $key + 1 }}</p>
@@ -104,16 +104,7 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center ms-1">
                                                             <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->tasks->event->name ?? 'N/A' }}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center ms-1">
-                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                                {{ $item->tasks->name }}
+                                                                {{ $item->event->name ?? 'N/A' }}
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -127,17 +118,46 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                {{-- <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center ms-1">
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $item->name }}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </td> --}}
                                                 <td class="align-middle ">
-                                                    <a href="/dashboard/report/task/{{ $item->tasks->id_event }}/{{ $item->tasks->id }}"
+                                                    <a href="/dashboard/report/task/{{ $item->id_event }}/{{ $item->id }}"
                                                         class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
                                                         <i class="fa-solid fa-file-export fs-6"></i>
                                                     </a>
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     <div class="progress" style="width: 100%; height: 30px;">
                                                         <div class="progress-bar progress-bar-striped"
                                                             style="width: {{ $item->progress == null ? '10' : $item->progress }}%; height: 100%;">
                                                             {{ round($item->progress) }}%
+                                                        </div>
+                                                    </div>
+                                                </td> --}}
+                                                <td>
+                                                    @php
+                                                        if ($reports[$item->id]->count() > 0) {
+                                                            $countReport = $reports[$item->id]->count();
+                                                            $done = collect($reports[$item->id])->sum('has_details');
+                                                            $progress = ($done / $countReport) * 100;
+                                                        } else {
+                                                            $progress = 0;
+                                                        }
+
+                                                        // echo round($progress).'%';
+                                                    @endphp
+
+                                                    <div class="progress" style="width: 100%; height: 30px;">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                             style="width: {{ $progress == 0 ? 10 : round($progress) }}%; height: 100%;">
+                                                            {{ round($progress) }}%
                                                         </div>
                                                     </div>
                                                 </td>

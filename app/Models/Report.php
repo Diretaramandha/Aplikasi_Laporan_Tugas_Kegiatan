@@ -14,6 +14,6 @@ class Report extends Model
    }
 
    public function detailReport(){
-    return $this->hasOne(DetailReport::class,'id_report');
+    return $this->hasMany(DetailReport::class,'id_report');
    }
 }

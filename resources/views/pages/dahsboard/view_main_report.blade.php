@@ -137,7 +137,7 @@
                                         <td>
                                             @php
                                                 if ($reports[$item->id]->count() > 0) {
-                                                    $countReport = $reports[$item->id]->count();
+                                                    $countReport = $reports[$item->id]->count(); 
                                                     $done = collect($reports[$item->id])->sum('has_details');
                                                     $progress = ($done / $countReport) * 100;
                                                 } else {

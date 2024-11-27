@@ -32,7 +32,7 @@ Route::get('/logout', [AuthController::class, 'logout_user']);
 Route::middleware('login')->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'view_dashboard']);
-        Route::get('/report/{id}', [DashboardController::class, 'view_report_main_tasks']);
+        Route::get('/report/{id_event}', [DashboardController::class, 'view_report_tasks']);
         Route::get('/report/task/{id_event}/{id_tasks}', [DashboardController::class, 'view_report_tasks']);
     });
 

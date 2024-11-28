@@ -86,11 +86,11 @@
                                                 </td>
                                                 <td>
                                                     <p class="text-sm text-secondary mb-0">
-                                                        @if($item->members == null)
-                                                            No Member
-                                                        @else
-                                                            <span class="badge bg-secondary">{{ $item->user->name }}</span>
-                                                        @endif
+                                                        @if ($item->member != null)
+                                                                @foreach ($item->member as $member)
+                                                                    {{ $member->user->name ?? 'No Member    ' }}
+                                                                @endforeach
+                                                            @endif
                                                     </p>
                                                 </td>
                                                 <td class="align-middle d-flex">

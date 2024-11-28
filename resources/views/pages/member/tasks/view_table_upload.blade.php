@@ -29,21 +29,21 @@
                                 </div>
                                 <div class="ms-auto d-flex">
                                     <a href="/member/task"
-                                    class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5 "
-                                    data-bs-toggle="tooltip" data-bs-title="Back">
-                                    <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
-                                </a>
-                                <a href="/upload/{{ $id_tasks }}"
-                                    class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5 "
-                                    data-bs-toggle="tooltip" data-bs-title="Upload">
-                                    <i class="fa-solid fa-table" style="font-size: 1rem" ></i>
-                                </a>
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
+                                        data-bs-toggle="tooltip" data-bs-title="Back">
+                                        <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
+                                    </a>
+                                    <a href="/upload/detail-report/{{ $tasks }}"
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
+                                        data-bs-toggle="tooltip" data-bs-title="Upload Detail report">
+                                        <i class="fa-solid fa-upload" style="font-size: 1rem"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0 ">
-                                <table id="myTable" class="table align-items-center mb-0 display">
+                                <table  id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">No
@@ -56,30 +56,21 @@
                                                 Dateline</th>
                                             {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                                 Report</th> --}}
-                                            {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Upload</th> --}}
+                                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Upload</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($tasks as $key => $item)
+                                    {{-- <tbody>
+                                        @foreach ($report as $key => $item)
                                             <tr>
                                                 <td>
                                                     <p class="text-sm text-secondary mb-0 ms-4 ">{{ $key + 1 }}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->tasks->name }}
+                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->name}}
                                                     </p>
                                                 </td>
-                                                <td>
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->name }}
-                                                </td>
                                                 <td class="align-middle text-center">
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->duetime }}
-                                                </td>
-                                                {{-- <td class="align-middle text-center">
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->tasks->report->name }}
-                                                </td> --}}
-                                                {{-- <td class="align-middle text-center">
                                                     <a href="/report/upload/{{ $item->id }}"
                                                         class=" me-2 my-2 opacity-5"
                                                         data-bs-toggle="tooltip" data-bs-title="Upload file">
@@ -87,10 +78,10 @@
                                                             <i class="fa-solid fa-upload" style="font-size: 1.5rem"></i>
                                                         </span>
                                                     </a>
-                                                </td> --}}
+                                                </td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
                             </div>
                         </div>

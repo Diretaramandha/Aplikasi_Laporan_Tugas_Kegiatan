@@ -8,6 +8,7 @@ use App\Http\Controllers\ExportExcelController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TaskController;
+use App\Models\DetailReport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,11 +63,17 @@ Route::middleware('login')->group(function () {
             Route::get('/delete/{id}', [MemberController::class, 'member_delete']);
             Route::post('/create', [MemberController::class, 'member_create']);
             Route::put('/update/{id}', [MemberController::class, 'member_update']);
-        });
 
-        Route::prefix('member/task')->group(function () {
-            Route::get('/', [MemberController::class,'view_task_member']);
-            Route::get('{id_user}/{id_task}', [MemberController::class,'view_task_member_detail']);
+            Route::prefix('task')->group(function () {
+                Route::get('/', [MemberController::class,'view_task_member']);
+                Route::get('{id_user}/{id_task}', [MemberController::class,'view_task_member_detail']);
+            });
+
+        });
+        Route::prefix('upload')->group(function () {
+            Route::get('{id_task}', [MemberController::class,'view_member_upload']);
+            Route::get('detail-report/{id_task}', [ReportController::class,'view_upload']);
+            Route::post('detail-report/{id_task}', [ReportController::class,'member_upload']);
         });
     });
 
@@ -106,8 +113,8 @@ Route::middleware('login')->group(function () {
         Route::get('create/{id_event}/{id_task}', [ReportController::class, 'view_report_create']);
         Route::get('update/{id_event}/{id_task}/{id_report}', [ReportController::class, 'view_report_update']);
         Route::get('delete/{id_report}', [ReportController::class, 'view_report_delete']);
-        Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
-        Route::post('upload/{id_report}', [ReportController::class, 'report_detail']);
+        // Route::get('upload/{id_report}', [ReportController::class, 'view_report_detail']);
+        // Route::post('upload/{id_report}', [ReportController::class, 'report_detail']);
         Route::post('create/{id_event}/{id_task}', [ReportController::class, 'report_create']);
         Route::post('update/{id_event}/{id_task}/{id_report}', [ReportController::class, 'report_update']);
         // Route::post('{id_event}/{id_task}/create', [ReportController::class, 'report_detail_create']);

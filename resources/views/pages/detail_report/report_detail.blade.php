@@ -39,21 +39,34 @@
                         </div>
                     </div>
                     <div class="card-body px-0 py-0">
-                        <form action="/report/upload/{{ $id_report }}" method="post" enctype="multipart/form-data">
+                        <form action="/upload/detail-report/{{ $task->id }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12 px-5 py-2 pt-4">
+                                    <label for="report">Report</label>
+                                    <select name="id_report" id="report" class="form-select">
+                                        <option value=""></option>
+                                        @foreach ($reports as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-12 px-5 py-2 pt-4">
                                     <label for="des">Description</label>
-                                    <input type="text" name="description" id="des" class="form-control" placeholder="Enter description">
+                                    <input type="text" name="description" id="des" class="form-control"
+                                        placeholder="Enter description">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="time">Date & Time</label>
-                                    <input type="datetime-local" name="datetime" id="time" class="form-control" placeholder="Enter Time">
+                                    <input type="datetime-local" name="datetime" id="time" class="form-control"
+                                        placeholder="Enter Time">
                                 </div>
                                 <div class="col-12 px-5 pt-2">
                                     <label id="linkLabel" for="link">Link</label>
-                                    <input type="text" name="link_file" id="link" class="form-control" placeholder="Enter Link">
-                                    <button type="button" class="btn btn-dark mt-2" onclick="changeInputType()">Ganti Tipe Input</button>
+                                    <input type="text" name="link_file" id="link" class="form-control"
+                                        placeholder="Enter Link">
+                                    <button type="button" class="btn btn-dark mt-2" onclick="changeInputType()">Ganti Tipe
+                                        Input</button>
                                 </div>
 
                                 <div class="col-12 px-5 py-4">
@@ -62,7 +75,7 @@
                             </div>
                         </form>
                         @if (Session::has('errors'))
-                        {{ Session::get('errors') }}
+                            {{ Session::get('errors') }}
                         @endif
 
                         <script>

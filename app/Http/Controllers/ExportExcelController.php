@@ -59,14 +59,31 @@ class ExportExcelController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         // Menambahkan header
-        $sheet->setCellValue('A1', 'No.');
-        $sheet->setCellValue('B1', 'Member');
-        $sheet->setCellValue('C1', 'Task');
-        $sheet->setCellValue('D1', 'Description');
-        $sheet->setCellValue('E1', 'Main Task');
-        $sheet->setCellValue('F1', 'Report');
-        $sheet->setCellValue('G1', 'File');
-        $sheet->setCellValue('H1', 'Link');
+        $headers = ['No.', 'Member', 'Task', 'Description', 'Main Task', 'Report', 'File', 'Link'];
+        $sheet->fromArray($headers, NULL, 'A1');
+
+        // Menambahkan gaya untuk header
+        $headerStyle = [
+            'font' => [
+                'bold' => true,
+                'size' => 12,
+                'color' => ['argb' => 'FFFFFFFF'],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => ['argb' => 'FF4F81BD'],
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
+        ];
+
+        $sheet->getStyle('A1:H1')->applyFromArray($headerStyle);
+
+        // Mengatur lebar kolom
+        foreach (range('A', 'H') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
 
         // Mengisi data
         $row = 2; // Mulai dari baris kedua
@@ -88,6 +105,16 @@ class ExportExcelController extends Controller
             $links = $item->report->pluck('detailReport.link_file')->implode(', ');
             $sheet->setCellValue('H' . $row, $links);
 
+            // Menambahkan batas pada sel
+            $sheet->getStyle('A' . $row . ':H' . $row)->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+
             $row++;
         }
 
@@ -99,8 +126,7 @@ class ExportExcelController extends Controller
         // Buat writer dan simpan file
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
-        toast('Warning Failed create report','warning');
+        toast('Warning Failed create report', 'warning');
         exit;
-
     }
 }

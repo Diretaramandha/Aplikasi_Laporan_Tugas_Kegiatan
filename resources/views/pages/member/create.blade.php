@@ -47,7 +47,7 @@
                                         <select name="user_id" id="user" class="form-select">
                                             <option value=""></option>
                                             @foreach ($users as $item)
-                                                <option value="{{ $item->id }}">Name : {{ $item->name }}</option>
+                                                <option value="{{ $item->id }}">Name Member : {{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -55,11 +55,9 @@
                                         <label for="task">Task :</label>
                                         <select name="task_id" id="task" class="form-select">
                                             <option value=""></option>
-                                            @foreach ($tasks as $key => $item)
-                                                <option value="{{ $item->tasks->id }}">
-                                                    <li>Name : {{ $item->tasks->name }}</li>
-                                                    <li>| Name Report : {{ $item->name }}</li>
-                                                    <li>| Duetime : {{ $item->duetime }}</li>
+                                            @foreach ($tasks as $item)
+                                                <option value="{{ $item->id }}">
+                                                    Task : {{ $item->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -69,10 +67,10 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- End Navbar -->
     </main>

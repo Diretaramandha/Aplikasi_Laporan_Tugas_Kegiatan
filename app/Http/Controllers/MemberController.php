@@ -25,10 +25,8 @@ class MemberController extends Controller
             ->whereDoesntHave('member') // Pastikan relasi 'member' sudah didefinisikan di model User
             ->get();
 
-        $data['tasks'] = Report::with('tasks.member') // Mengambil relasi task
-            ->whereHas('tasks', function ($query) {
-                $query->whereDoesntHave('member'); // Mengambil tugas yang tidak memiliki relasi dengan members
-            })
+        $data['tasks'] = Task::with('member') // Mengambil relasi task
+            ->whereDoesntHave('member')
             ->get();
         // $data['tasks'] = Report::with('tasks.member')->get();
 
@@ -39,22 +37,28 @@ class MemberController extends Controller
     {
         $user = Auth::user();
         $data['member'] = Member::where('user_id', $user->id)
-        ->with('user','tasks')
-        ->get();
+            ->with('user', 'tasks')
+            ->get();
 
-        return view('pages.member.tasks.view_tasks_member',$data);
+        return view('pages.member.tasks.view_tasks_member', $data);
     }
     public function view_task_member_detail($id_event, $id_task)
-{
-    $user = Auth::user();
-    $data['tasks'] = Report::where('tasks_idtask', $id_task)
-        ->whereHas('tasks.member', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })
-        ->get();
+    {
+        $user = Auth::user();
+        $data['tasks'] = Report::where('tasks_idtask', $id_task)
+            ->whereHas('tasks.member', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->get();
+        $data['id_tasks'] = $id_task;
 
-    return view('pages.member.tasks.view_tasks_upload', $data);
-}
+        return view('pages.member.tasks.view_tasks_upload', $data);
+    }
+    public function view_member_upload($id_task)
+    {
+        $data['tasks'] = $id_task;
+        return view('pages.member.tasks.view_table_upload',$data);
+    }
 
 
     public function view_member_update($id_member)
@@ -73,7 +77,7 @@ class MemberController extends Controller
         toast('Success Delete Member', 'success');
         return redirect("/member");
     }
-    public function member_update(Request $request,$id_member)
+    public function member_update(Request $request, $id_member)
     {
         $create = $request->validate([
             'user_id' => ['required'],
@@ -83,7 +87,7 @@ class MemberController extends Controller
             toast('Failed Create Member', 'warning');
             return redirect()->back();
         }
-        $member = Member::where('id',$id_member)->first();
+        $member = Member::where('id', $id_member)->first();
         $member->update([
             'user_id' => $request->user_id,
             'task_id' => $request->task_id,

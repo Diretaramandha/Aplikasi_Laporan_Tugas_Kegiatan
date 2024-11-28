@@ -109,8 +109,55 @@ class ReportController extends Controller
         return redirect('/report/task/' . $id_event . '/' . $id_task);
     }
 
-    public function report_detail(Request $request, $id_report)
-    {
+    // public function report_detail(Request $request, $id_report)
+    // {
+    //     $validate = $request->validate([
+    //         'description' => ['required', 'string'],
+    //         'datetime' => ['required'],
+    //         'file_upload' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+    //         'link_file' => ['nullable', 'string'],
+    //     ]);
+
+    //     $detailreport = DetailReport::where('id_report', $id_report)->first();
+
+    //     if (!$detailreport) {
+    //         $detailreport = new DetailReport();
+    //     }
+
+    //     $detailreport->description = $request->description;
+    //     $detailreport->datetime = $request->datetime;
+
+    //     if ($request->hasFile('file_upload')) {
+    //         $filename = uniqid() . '.' . $request->file('file_upload')->getClientOriginalExtension();
+    //         $request->file('file_upload')->storeAs('file', $filename);
+    //         $detailreport->file_upload = $filename;
+    //     } else {
+    //         if ($request->link_file) {
+    //             $detailreport->link_file = $request->link_file;
+    //         }
+    //     }
+
+    //     $detailreport->id_report = $id_report;
+
+    //     $detailreport->save();
+    //     toast('Success Upload','success');
+    //     return redirect('/member/task');
+    // }
+
+    public function view_upload(Request $request,$id_task){
+        $reports = Report::where('tasks_idtask',$id_task)->get();
+
+        $task = Task::find($id_task);
+        return view('pages.detail_report.report_detail',compact('reports','task'));
+    }
+
+    // public function view_member_tables_upload($id_task){
+    //     $data['report'] = Report::where('tasks_idtask',$id_task);
+    //     // echo json_encode($data);
+    //     return view('pages.member.tasks.view_table_upload',$data);
+    // }
+
+    public function member_upload(Request $request){
         $validate = $request->validate([
             'description' => ['required', 'string'],
             'datetime' => ['required'],
@@ -118,7 +165,7 @@ class ReportController extends Controller
             'link_file' => ['nullable', 'string'],
         ]);
 
-        $detailreport = DetailReport::where('id_report', $id_report)->first();
+        $detailreport = DetailReport::where('id_report', $request->id_report)->first();
 
         if (!$detailreport) {
             $detailreport = new DetailReport();
@@ -137,10 +184,10 @@ class ReportController extends Controller
             }
         }
 
-        $detailreport->id_report = $id_report;
+        $detailreport->id_report = $request->id_report;
 
         $detailreport->save();
         toast('Success Upload','success');
-        return redirect('/member/task');
+        return redirect('/upload/');
     }
 }

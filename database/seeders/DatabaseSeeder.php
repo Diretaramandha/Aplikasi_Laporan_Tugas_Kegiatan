@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             "password"=> bcrypt("12"),
         ]);
         User::create([
-            "name"=> "Direta R",
+            "name"=> "Geusan",
             "username"=> "direta",
             "email"=> "direta2@gmail.com",
             "nohp"=> "0899642344",
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             "password"=> bcrypt("12"),
         ]);
         User::create([
-            "name"=> "Diretaa",
+            "name"=> "Adit",
             "username"=> "direta",
             "email"=> "direta3@gmail.com",
             "nohp"=> "0899642344",
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             "password"=> bcrypt("12"),
         ]);
         User::create([
-            "name"=> "DiretaaR",
+            "name"=> "Mufti",
             "username"=> "direta",
             "email"=> "direta4@gmail.com",
             "nohp"=> "0899642344",

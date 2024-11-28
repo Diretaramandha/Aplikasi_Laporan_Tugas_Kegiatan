@@ -41,7 +41,7 @@ class TaskController extends Controller
 
     public function view_sub_task($id_event, $id)
     {
-        $data['sub_task'] = Task::with('event','member')
+        $data['sub_task'] = Task::with('event','member.user')
             ->where('tasks_idtask', $id)
             ->get();
 

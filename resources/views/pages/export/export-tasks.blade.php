@@ -54,6 +54,8 @@
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             report</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                            Lebar Report</th>
+                                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             File</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             link</th>
@@ -121,6 +123,13 @@
                                                         </h6>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td class="">
+                                                <a href="/export-excel/report/{{ $item->id }}"
+                                                    class=" opacity-6 my-2 " data-bs-toggle="tooltip"
+                                                    data-bs-title="View Report">
+                                                    <i class="fa-regular fa-file-lines" style="font-size: 1.5rem"></i>
+                                                </a>
                                             </td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">

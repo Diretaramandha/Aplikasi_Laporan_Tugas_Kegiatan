@@ -27,7 +27,7 @@
                                     <h6 class="font-weight-semibold text-lg mb-0">Your Task</h6>
                                     <p class="text-sm">See information about all users</p>
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div class="card-body px-4 py-3">
@@ -65,9 +65,6 @@
                                                 <td class="align-middle text-center">
                                                     <p class="text-sm text-secondary mb-0">{{ $item->tasks->name }}
                                                 </td>
-                                                {{-- <td class="align-middle text-center">
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->tasks->report->name }}
-                                                </td> --}}
                                                 <td class="align-middle text-center">
                                                     <a href="/member/task/{{ $item->user_id }}/{{ $item->task_id }}"
                                                         class=" me-2 my-2 opacity-5"

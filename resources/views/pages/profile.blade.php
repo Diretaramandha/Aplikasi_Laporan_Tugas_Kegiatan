@@ -8,9 +8,9 @@
                     <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Event</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Profile</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Event</h6>
+                    <h6 class="font-weight-bold mb-0">Your Profile</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 </div>
@@ -28,16 +28,6 @@
                                     <h6 class="font-weight-semibold text-lg mb-0">Your Profile</h6>
                                     <p class="text-sm">Rewrite if you want to change then click the update button</p>
                                 </div>
-                                {{-- <div class="ms-auto d-flex">
-                                    <a href="/event/create"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
-                                        <span class="btn-inner--icon">
-                                            <img src="{{ asset('assets/img/logos/event-add.png') }}" alt=""
-                                                width="16px" height="18px">
-                                        </span>
-                                        <span class="btn-inner--text  ms-2">Add Event</span>
-                                    </a>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="card-body align-items-center">
@@ -78,7 +68,7 @@
                                             <div class="col-6 py-3">
                                                 <label for="name" class="">Password :</label>
                                                 <input type="password" name="pasword" id=""
-                                                    class="form-control" value="{{ $user->password }}" placeholder="Enter Change Password">
+                                                    class="form-control" value="" placeholder="Enter Change Password">
                                             </div>
                                             <div class="col-12 py-3">
                                                 <input type="submit" value="Change Your Profile" id=""

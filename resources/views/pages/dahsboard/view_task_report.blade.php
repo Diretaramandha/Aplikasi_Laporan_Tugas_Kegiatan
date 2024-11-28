@@ -8,12 +8,12 @@
                     <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Report</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Progress</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Detail Report</h6>
+                    <h6 class="font-weight-bold mb-0">Progress Task Event</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    
+
                 </div>
             </div>
         </nav>
@@ -90,8 +90,8 @@
                                                 </td> --}}
                                                 <td class="align-middle ">
                                                     <a href="/dashboard/report/task/{{ $item->id_event }}/{{ $item->id }}"
-                                                        class="btn btn-sm btn-dark btn-icon my-2 opacity-5">
-                                                        <i class="fa-solid fa-file-export fs-6"></i>
+                                                        class=" my-2 opacity-5">
+                                                        <i class="fa-solid fa-file-export " style="font-size: 1.8rem"></i>
                                                     </a>
                                                 </td>
                                                 {{-- <td>

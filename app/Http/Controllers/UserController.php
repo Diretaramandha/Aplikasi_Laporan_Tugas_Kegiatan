@@ -103,40 +103,43 @@ class UserController extends Controller
         return redirect('/user');
     }
     public function profile_change(Request $request, $id_user)
-{
-    // Validasi input
-    $create = $request->validate([
-        'name' => ['required'],
-        'username' => ['required'],
-        'email' => ['required', 'email'],
-        'nohp' => ['required'],
-        'address' => ['required'],
-        'level' => ['required'],
-        'password' => ['nullable'],
-    ]);
+    {
+        // Validasi input
+        $create = $request->validate([
+            'name' => ['required'],
+            'username' => ['required'],
+            'email' => ['required', 'email'],
+            'nohp' => ['required'],
+            'address' => ['required'],
+            'level' => ['required'],
+            'password' => ['nullable'], // Password bisa kosong
+        ]);
 
-    $user = User::find($id_user);
-    if (!$user) {
-        toast('User  not found', 'error');
-        return redirect()->back();
+        $user = User::find($id_user);
+        if (!$user) {
+            toast('User  not found', 'error');
+            return redirect()->back();
+        }
+
+        // Siapkan data yang akan diupdate
+        $dataToUpdate = [
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'nohp' => $request->nohp,
+            'address' => $request->address,
+            'level' => $request->level,
+        ];
+
+        // Periksa apakah password diinputkan
+        if (!empty($request->password)) {
+            $dataToUpdate['password'] = bcrypt($request->password); // Hanya update password jika diisi
+        }
+
+        // Lakukan update
+        $user->update($dataToUpdate);
+
+        toast('Success update your profile', 'success');
+        return redirect('/profile');
     }
-
-    $user->update([
-        'name' => $request->name,
-        'username' => $request->username,
-        'email' => $request->email,
-        'nohp' => $request->nohp,
-        'address' => $request->address,
-        'level' => $request->level,
-        'password' => bcrypt($request->password),
-    ]);
-
-    // if (!empty($request->password)) {
-    //     $user->update([
-    //     ]);
-    // }
-
-    toast('Success update your profile', 'success');
-    return redirect('/profile');
-}
 }

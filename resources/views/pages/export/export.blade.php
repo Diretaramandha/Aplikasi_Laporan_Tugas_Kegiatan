@@ -66,9 +66,9 @@
                                             </td>
                                             <td class="">
                                                 <a href="/export-excel/tasks/{{ $item->id }}"
-                                                    class="btn btn-secondary opacity-6 my-2" data-bs-toggle="tooltip"
+                                                    class=" opacity-6 my-2" data-bs-toggle="tooltip"
                                                     data-bs-title="Export Excel">
-                                                    <i class="fa-solid fa-file-excel" style="font-size: 1rem"></i>
+                                                    <i class="fa-solid fa-file-excel" style="font-size: 1.5rem"></i>
                                                 </a>
                                             </td>
                                         </tr>

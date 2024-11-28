@@ -26,12 +26,12 @@
                                 <p class="text-sm mb-sm-0">Tasks in event {{ $event->name }}</p>
                             </div>
                             <div class="ms-auto d-flex">
-                                <a href="/export-excel/tasks/{{ $event->id }}/export    " class="btn btn-sm btn-success btn-icon d-flex align-items-center mb-0 me-2 w-100">
-                                    <span class="btn-inner--text">Export to Excel</span>
-                                </a>
                                 <a href="javascript:void(0);" onclick="window.history.back();"
-                                    class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 w-100">
-                                    <span class="btn-inner--text">Back</span>
+                                    class="btn btn-sm btn-secondary btn-icon d-flex align-items-center mb-0 me-2 w-100">
+                                    <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
+                                </a>
+                                <a href="/export-excel/tasks/{{ $event->id }}/export " class="btn btn-sm btn-success btn-icon d-flex align-items-center mb-0 me-2 w-100" data-bs-toggle="tooltip" data-bs-title="Export Excel">
+                                    <i class="fa-solid fa-download" style="font-size: 1rem"></i>
                                 </a>
                             </div>
                         </div>

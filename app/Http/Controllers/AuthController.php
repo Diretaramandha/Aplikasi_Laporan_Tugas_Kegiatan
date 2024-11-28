@@ -17,11 +17,12 @@ class AuthController extends Controller
             alert()->info('Login Success','Welcome, '.Auth::user()->name);
             return redirect("/dashboard");
         }
-        alert()->error('ErrorAlert','Lorem ipsum dolor sit amet.');
+        alert()->error('Login Failed','Check email and password');
         return redirect()->back();
     }
     public function logout_user(){
         Auth::logout();
-        return redirect("/");
+        alert()->info('You are Logout','See you next time');
+        return redirect("/sign-in");
     }
 }

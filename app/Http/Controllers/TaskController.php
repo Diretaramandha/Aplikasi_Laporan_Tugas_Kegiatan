@@ -11,12 +11,13 @@ class TaskController extends Controller
 {
     public function view_task($id)
     {
-        $data['task'] = Task::with('event')
+        $data['task'] = Task::with(['event','member.user'])
             ->where('id_event', $id)
             ->whereNull('tasks_idtask')
             ->get();
 
         $data['id'] = $id;
+        // echo json_encode($data['task']);
         return view("pages.Task.task", $data);
     }
 
@@ -40,7 +41,7 @@ class TaskController extends Controller
 
     public function view_sub_task($id_event, $id)
     {
-        $data['sub_task'] = Task::with('event')
+        $data['sub_task'] = Task::with('event','member')
             ->where('tasks_idtask', $id)
             ->get();
 

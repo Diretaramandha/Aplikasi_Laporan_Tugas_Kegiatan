@@ -99,6 +99,8 @@ class ExportExcelController extends Controller
         // Buat writer dan simpan file
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
+        toast('Warning Failed create report','warning');
         exit;
+
     }
 }

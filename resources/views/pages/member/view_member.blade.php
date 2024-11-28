@@ -8,9 +8,9 @@
                     <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Add User</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Member</li>
                     </ol>
-                    <h6 class="font-weight-bold mb-0">Add User</h6>
+                    <h6 class="font-weight-bold mb-0">Member</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 </div>
@@ -24,52 +24,21 @@
                         <div class="card-header border-bottom pb-0">
                             <div class="d-sm-flex align-items-center">
                                 <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Users list</h6>
-                                    <p class="text-sm">See information about all users</p>
+                                    <h6 class="font-weight-semibold text-lg mb-0">Member list</h6>
+                                    <p class="text-sm">See information about all Member</p>
                                 </div>
                                 <div class="ms-auto d-flex">
                                     <a href="/member/create"
-                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
-                                        <span class="btn-inner--icon">
-                                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
-                                                <path
-                                                    d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
-                                            </svg>
-                                        </span>
-                                        <span class="btn-inner--text">Add Member</span>
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2"
+                                        data-bs-toggle="tooltip" data-bs-title="Add Member">
+                                        <i class="fa-solid fa-users" style="font-size: 1rem"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
-                            <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
-                                {{-- <form action="/add-user" method="POST" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                @csrf
-                                <input type="radio" class="btn-check" name="level" id="radio" value="all" autocomplete="off" checked>
-                                <label class="btn btn-white px-3 mb-0" for="radio">All</label>
-                                <input type="radio" class="btn-check" name="level" id="radio2" value="admin" autocomplete="off">
-                                <label class="btn btn-white px-3 mb-0" for="radio2">Admin</label>
-                                <input type="radio" class="btn-check" name="level" id="radio3" value="member" autocomplete="off">
-                                <label class="btn btn-white px-3 mb-0" for="radio3">Member</label>
-                            </form> --}}
-                                <form action="/add-user" method="POST" class="input-group w-sm-25 ms-auto">
-                                    @csrf
-                                    <span class="input-group-text text-body">
-                                        <button type="submit" class="border-0 bg-transparent w-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </span>
-                                    <input type="search" class="form-control" name="search" placeholder="Search">
-                                </form>
-                            </div>
+                        <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0 ">
-                                <table id="tabel-data" class="table align-items-center mb-0">
+                                <table  id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">No

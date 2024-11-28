@@ -39,5 +39,23 @@ class DatabaseSeeder extends Seeder
             "level"=> "member",
             "password"=> bcrypt("12"),
         ]);
+        User::create([
+            "name"=> "Diretaa",
+            "username"=> "direta",
+            "email"=> "direta3@gmail.com",
+            "nohp"=> "0899642344",
+            "address"=> "Tasikmalaya,Singaparna",
+            "level"=> "member",
+            "password"=> bcrypt("12"),
+        ]);
+        User::create([
+            "name"=> "DiretaaR",
+            "username"=> "direta",
+            "email"=> "direta4@gmail.com",
+            "nohp"=> "0899642344",
+            "address"=> "Tasikmalaya,Singaparna",
+            "level"=> "member",
+            "password"=> bcrypt("12"),
+        ]);
     }
 }

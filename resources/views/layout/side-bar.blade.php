@@ -34,8 +34,8 @@
                 <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                     aria-hidden="true" id="iconSidenav"></i>
                 <a class="navbar-brand d-flex align-items-center m-0"
-                    href=" https://demos.creative-tim.com/corporate-ui-dashboard/pages/dashboard.html " target="_blank">
-                    <span class="font-weight-bold text-lg">Activity Task Report</span>
+                    href="/dashboard">
+                    <span class="font-weight-bold text-lg text-center mx-auto">Management <br>Event</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
@@ -71,8 +71,7 @@
                         <a class="nav-link  " href="/user">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('assets/img/logos/add-user.png') }}" alt=""
-                                    style="width: 24px; height: 24px;">
+                                <i class="fa-solid fa-user" style="font-size: 1rem"></i>
                             </div>
                             <span class="nav-link-text ms-1">User</span>
                         </a>
@@ -81,29 +80,18 @@
                         <a class="nav-link  " href="/event">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('assets/img/logos/event.png') }}" alt=""
-                                    style="width: 22px; height: 22px;">
+                                <i class="fa-solid fa-calendar-days" style="font-size: 1rem"></i>
                             </div>
                             <span class="nav-link-text ms-1">Event</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link  " href="/report">
-                            <div
-                                class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-file fs-5 text-white"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">Report</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link  " href="/export-excel">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('img/excel-white.png') }}" alt=""
-                                    style="width: 18px; height: 18px;">
+                                <i class="fa-solid fa-download" style="font-size: 1rem"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Extract to excel</span>
+                            <span class="nav-link-text ms-1">Export to excel</span>
                         </a>
                     </li>
                     <li class="nav-item mt-2">
@@ -173,8 +161,7 @@
                         <a class="nav-link  " href="/member">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('img/member-white.png') }}" alt=""
-                                    style="width: 22px; height: 22px;">
+                                <i class="fa-solid fa-users" style="font-size: 1rem"></i>
                             </div>
                             <span class="nav-link-text ms-1">Member</span>
                         </a>
@@ -183,8 +170,7 @@
                         <a class="nav-link  " href="/event">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('assets/img/logos/event.png') }}" alt=""
-                                    style="width: 22px; height: 22px;">
+                                <i class="fa-solid fa-calendar-days" style="font-size: 1rem"></i>
                             </div>
                             <span class="nav-link-text ms-1">Event</span>
                         </a>
@@ -193,7 +179,7 @@
                         <a class="nav-link  " href="/member/task">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-file fs-5 text-white"></i>
+                                <i class="fa-solid fa-file" style="font-size: 1rem"></i>
                             </div>
                             <span class="nav-link-text ms-1">Task</span>
                         </a>
@@ -202,10 +188,9 @@
                         <a class="nav-link  " href="/export-excel">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('img/excel-white.png') }}" alt=""
-                                    style="width: 18px; height: 18px;">
+                                <i class="fa-solid fa-download" style="font-size: 1rem"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Extract to excel</span>
+                            <span class="nav-link-text ms-1">Export to excel</span>
                         </a>
                     </li>
                     <li class="nav-item mt-2">

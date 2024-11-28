@@ -69,6 +69,8 @@ class ReportController extends Controller
         ]);
 
         if (!$validate) {
+            toast('Warning Failed create report','warning');
+
             return redirect()->back();
         }
 
@@ -80,6 +82,7 @@ class ReportController extends Controller
         $report->tasks_idtask = $id_task;
         $report->save();
 
+        toast('Success Create Report','success');
 
         return redirect('/report/task/' . $id_event . '/' . $id_task);
     }
@@ -91,6 +94,7 @@ class ReportController extends Controller
         ]);
 
         if (!$validate) {
+            toast('Warning Failed Update report','warning');
             return redirect()->back();
         }
 
@@ -101,7 +105,7 @@ class ReportController extends Controller
             'tasks_idtask' => $id_task,
         ]);
 
-
+        toast('Success Update Report','success');
         return redirect('/report/task/' . $id_event . '/' . $id_task);
     }
 
@@ -136,7 +140,7 @@ class ReportController extends Controller
         $detailreport->id_report = $id_report;
 
         $detailreport->save();
-
+        toast('Success Upload','success');
         return redirect('/member/task');
     }
 }

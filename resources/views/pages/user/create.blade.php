@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">No.Tel</label>
-                                    <input type="text" name="nohp" id="" class="form-control" placeholder="Enter No.Tel">
+                                    <input type="number" name="nohp" id="" class="form-control" placeholder="Enter No.Tel">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="name">Address</label>

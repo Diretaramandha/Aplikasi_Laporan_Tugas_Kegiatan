@@ -33,7 +33,7 @@
                                         data-bs-toggle="tooltip" data-bs-title="Back">
                                         <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
                                     </a>
-                                    <a href="/upload/detail-report/{{ $tasks }}"
+                                    <a href="/upload/detail-report/{{ $report->id }}"
                                         class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5"
                                         data-bs-toggle="tooltip" data-bs-title="Upload Detail report">
                                         <i class="fa-solid fa-upload" style="font-size: 1rem"></i>
@@ -43,45 +43,70 @@
                         </div>
                         <div class="card-body px-4 py-3">
                             <div class="table-responsive p-0 ">
-                                <table  id="myTable" class="table align-items-center mb-0 display">
+                                <table id="myTable" class="table align-items-center mb-0 display">
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7">No
                                             </th>
-                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Task
-                                            </th>
                                             <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                Report</th>
+                                                Detail Report</th>
+                                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Report
+                                            </th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Dateline</th>
-                                            {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Report</th> --}}
+                                                Action</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Upload</th>
+                                                File</th>
+                                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Link</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
-                                        @foreach ($report as $key => $item)
+                                    <tbody>
+                                        @foreach ($upload as $key => $item)
                                             <tr>
                                                 <td>
                                                     <p class="text-sm text-secondary mb-0 ms-4 ">{{ $key + 1 }}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->name}}
+                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->description }}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-sm text-secondary mb-0 ms-3 ">{{ $item->report->name }}
                                                     </p>
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <a href="/report/upload/{{ $item->id }}"
-                                                        class=" me-2 my-2 opacity-5"
-                                                        data-bs-toggle="tooltip" data-bs-title="Upload file">
-                                                        <span class="btn-inner--icon">
-                                                            <i class="fa-solid fa-upload" style="font-size: 1.5rem"></i>
-                                                        </span>
+                                                    <a href="/upload/update/{{ $report->id }}/{{ $item->id }}"
+                                                        class="text-secondary font-weight-bold text-xs"
+                                                        data-bs-toggle="tooltip" data-bs-title="Edit">
+                                                        <i class="fa-solid fa-file-pen" style="font-size: 1.2rem"></i>
                                                     </a>
+                                                    <a href="/upload/delete/{{ $item->id }}"
+                                                        class="text-secondary font-weight-bold text-xs ms-2"
+                                                        data-bs-toggle="tooltip" data-bs-title="Delete">
+                                                        <i class="fa-solid fa-trash" style="font-size: 1.2rem"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <p class="text-sm text-secondary mb-0 ms-3">
+                                                        @if ($item->link_file == null)
+                                                            Tidak Upload File
+                                                        @endif
+                                                        {{ $item->link_file }}
+                                                    </p>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <p class="text-sm text-secondary mb-0 ms-3 ">
+                                                        @if ($item->file_upload == null)
+                                                            Tidak Upload File
+                                                        @else
+                                                            <img src="{{ asset('storage/file/' . $item->file_upload) }}"
+                                                                alt="" width="80rem" height="80rem">
+                                                        @endif
+                                                    </p>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

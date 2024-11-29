@@ -73,7 +73,10 @@ Route::middleware('login')->group(function () {
         Route::prefix('upload')->group(function () {
             Route::get('{id_task}', [MemberController::class,'view_member_upload']);
             Route::get('detail-report/{id_task}', [ReportController::class,'view_upload']);
-            Route::post('detail-report/{id_task}', [ReportController::class,'member_upload']);
+            Route::get('update/{id_task}/{id_detail}', [ReportController::class,'view_upload_update']);
+            Route::get('delete/{id_detail}', [MemberController::class,'view_delete_upload']);
+            Route::post('detail-report/{id_report}', [ReportController::class,'member_upload']);
+            Route::post('detail-report/update/{id_detail}', [ReportController::class,'member_upload_update']);
         });
     });
 
@@ -123,7 +126,6 @@ Route::middleware('login')->group(function () {
     // Rute untuk Export Excel
     Route::prefix('export-excel')->group(function () {
         Route::get('/', [ExportExcelController::class, 'view_export']);
-        Route::get('tasks/{id_event}', [ExportExcelController::class, 'view_export_tasks']);
         Route::get('tasks/{id_event}', [ExportExcelController::class, 'view_export_tasks']);
         Route::get('tasks/{id_event}/export', [ExportExcelController::class, 'exportTasksToExcel']);
     });

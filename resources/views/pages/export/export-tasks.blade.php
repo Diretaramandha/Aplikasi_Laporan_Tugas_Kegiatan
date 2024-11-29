@@ -30,7 +30,9 @@
                                     class="btn btn-sm btn-secondary btn-icon d-flex align-items-center mb-0 me-2 w-100">
                                     <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
                                 </a>
-                                <a href="/export-excel/tasks/{{ $event->id }}/export " class="btn btn-sm btn-success btn-icon d-flex align-items-center mb-0 me-2 w-100" data-bs-toggle="tooltip" data-bs-title="Export Excel">
+                                <a href="/export-excel/tasks/{{ $event->id }}/export "
+                                    class="btn btn-sm btn-success btn-icon d-flex align-items-center mb-0 me-2 w-100"
+                                    data-bs-toggle="tooltip" data-bs-title="Export Excel">
                                     <i class="fa-solid fa-download" style="font-size: 1rem"></i>
                                 </a>
                             </div>
@@ -43,18 +45,16 @@
                                     <tr>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7">
                                             No.</th>
-                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                            Member</th>
-                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">
-                                            Task</th>
-                                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                            Description</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             Main Task</th>
+                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">
+                                            Task</th>
+                                        <th class="text-secondary text-xs font-weight-semibold opacity-7">
+                                            Report</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                            report</th>
+                                            Format</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                            Lebar Report</th>
+                                            Description</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                             File</th>
                                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
@@ -62,7 +62,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tasks as $key => $item)
+                                    @foreach ($report as $key => $item)
                                         <tr>
                                             <td>
                                                 <p class="fw-bold text-secondary ms-3 my-2">{{ $key + 1 }}</p>
@@ -70,12 +70,21 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <p class="my-2 text-secondary">
-                                                            @if ($item->member != null)
-                                                                @foreach ($item->member as $member)
-                                                                    {{ $member->user->name ?? '' }}
-                                                                @endforeach
+                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                            @if ($item->tasks->tasks_idtask == null)
+                                                                {{ $item->tasks->name }}
+                                                            @else
+                                                                {{ $item->tasks->subTask->name }}
                                                             @endif
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center ms-1 ">
+                                                        <p class="my-2 text-secondary">
+                                                            {{ $item->tasks->name }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -84,79 +93,54 @@
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d -flex flex-column justify-content-center ms-1 ">
                                                         <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            {{ $item->name }}</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            {{ $item->description }}</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            @if ($item->subTask == null)
-                                                                it's Main task in {{ $item->event->name }}
-                                                            @else
-                                                                {{ $item->subTask->name }}
-                                                            @endif
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            @if ($item->report == null)
-                                                                belum ada report
-                                                            @else
-                                                                @foreach ($item->report as $report)
-                                                                    <div>{{ $report->name }}</div>
-                                                                @endforeach
-                                                            @endif
+                                                            {{ $item->name }}
                                                         </h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="">
-                                                <a href="/export-excel/report/{{ $item->id }}"
-                                                    class=" opacity-6 my-2 " data-bs-toggle="tooltip"
-                                                    data-bs-title="View Report">
+                                                <a href="/export-excel/report/" class=" opacity-6 my-2 "
+                                                    data-bs-toggle="tooltip" data-bs-title="View Report">
                                                     <i class="fa-regular fa-file-lines" style="font-size: 1.5rem"></i>
                                                 </a>
                                             </td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            @if ($item->report != null)
-                                                            @foreach ($item->report as $report)
-                                                                {{ $report->detailReport->file_upload ?? '' }}
-                                                            @endforeach
-                                                        @endif
-                                                        </h6>
+                                                        @foreach ($item->detailReport as $key => $detailreport)
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $key + 1 }}. {{ $detailreport->description }}
+                                                            </h6>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center ms-1 ">
+                                                        @foreach ($item->detailReport as $key => $detailreport)
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $key + 1 }}. <img
+                                                                    src="{{ asset('storage/file/' . $item->upload_file) }}"
+                                                                    width="10rem" height="10rem" alt="">
+                                                            </h6>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center ms-1 ">
-                                                        <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
-                                                            @if ($item->report != null)
-                                                            @foreach ($item->report as $report)
-                                                                {{ $report->detailReport->link_file ?? '' }}
-                                                            @endforeach
-                                                        @endif
-                                                        </h6>
+                                                        @foreach ($item->detailReport as $key => $detailreport)
+                                                            <h6 class="mb-0 text-sm font-weight-semibold text-secondary">
+                                                                {{ $key + 1 }}. {{ $detailreport->link_file }}
+                                                            </h6>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

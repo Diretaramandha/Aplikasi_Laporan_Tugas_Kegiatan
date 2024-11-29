@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\member;
 use App\Models\Event;
+use App\Models\Report;
 use App\Models\Task;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -26,40 +27,44 @@ class ExportExcelController extends Controller
         // Mengambil data event berdasarkan id_event
         $data['event'] = Event::where('id', $id_event)->first();
 
-        $data['tasks'] = Task::with([
-            'event', // Tidak perlu filter di sini
-            'report.detailReport', // Menggunakan sintaks yang lebih ringkas
-            'member.user',
-            'subTask',
-        ])
-            ->where('id_event', $id_event)
-            ->get();
+        $data['report'] = Report::with([
+            'tasks' => function ($query) use ($id_event) {
+                $query->where('id_event', $id_event)
+                    ->with('member.user', 'subTask');
+            },
+            'detailReport',
+        ])->get();
 
-        // return response()->json($data['tasks']);
-
-        return view('pages.export.export-tasks',     $data);
+        // return response()->json($data['report']);
+        return view('pages.export.export-tasks', $data);
     }
 
     public function exportTasksToExcel($id_event)
     {
         // Mengambil data event berdasarkan id_event
-        $event = Event::where('id', $id_event)->first();
+        $event = Event::find($id_event);
 
-        $tasks = Task::with([
-            'event',
-            'report.detailReport',
-            'member.user',
-            'subTask',
-        ])
-            ->where('id_event', $id_event)
-            ->get();
+        if (!$event) {
+            return response()->json(['error' => 'Event not found.'], 404);
+        }
+
+        // Fetch reports with related tasks and detail reports
+        $reports = Report::with([
+            'tasks' => function ($query) use ($id_event) {
+                $query->where('id_event', $id_event)
+                    ->with('member.user', 'subTask');
+            },
+            'detailReport',
+        ])->whereHas('tasks', function ($query) use ($id_event) {
+            $query->where('id_event', $id_event);
+        })->get();
 
         // Membuat spreadsheet baru
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
         // Menambahkan header
-        $headers = ['No.', 'Member', 'Task', 'Description', 'Main Task', 'Report', 'File', 'Link'];
+        $headers = ['No.', 'Main Task', 'Task', 'Report', 'Format', 'Description', 'File', 'Link'];
         $sheet->fromArray($headers, NULL, 'A1');
 
         // Menambahkan gaya untuk header
@@ -87,22 +92,32 @@ class ExportExcelController extends Controller
 
         // Mengisi data
         $row = 2; // Mulai dari baris kedua
-        foreach ($tasks as $key => $item) {
+        foreach ($reports as $key => $item) {
             $sheet->setCellValue('A' . $row, $key + 1);
 
-            $members = $item->member->pluck('user.name')->implode(', ');
-            $sheet->setCellValue('B' . $row, $members);
-            $sheet->setCellValue('C' . $row, $item->name);
-            $sheet->setCellValue('D' . $row, $item->description);
-            $sheet->setCellValue('E' . $row, $item->subTask ? $item->subTask->name : "It's Main task in " . $item->event->name);
+            // Main Task
+            $mainTask = $item->tasks->tasks_idtask == null ? $item->tasks->name : $item->tasks->subTask->name;
+            $sheet->setCellValue('B' . $row, $mainTask);
 
-            $reports = $item->report->pluck('name')->implode(', ');
-            $sheet->setCellValue('F' . $row, $reports ?: 'Belum ada report');
+            // Task
+            $sheet->setCellValue('C' . $row, $item->tasks->name);
 
-            $files = $item->report->pluck('detailReport.file_upload')->implode(', ');
+            // Report
+            $sheet->setCellValue('D' . $row, $item->name);
+
+            // Format (You can customize this if you have specific formats)
+            $sheet->setCellValue('E' . $row, ''); // Placeholder for Format
+
+            // Description
+            $descriptions = $item->detailReport->pluck('description')->implode(', ');
+            $sheet->setCellValue('F' . $row, $descriptions);
+
+            // File
+            $files = $item->detailReport->pluck('file_upload')->implode(', ');
             $sheet->setCellValue('G' . $row, $files);
 
-            $links = $item->report->pluck('detailReport.link_file')->implode(', ');
+            // Link
+            $links = $item->detailReport->pluck('link_file')->implode(', ');
             $sheet->setCellValue('H' . $row, $links);
 
             // Menambahkan batas pada sel
@@ -121,12 +136,9 @@ class ExportExcelController extends Controller
         // Set header untuk download
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="tasks_event_' . $event->name . '.xlsx"');
-        header('Cache-Control: max-age=0');
-
         // Buat writer dan simpan file
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
-        toast('Warning Failed create report', 'warning');
         exit;
     }
 }

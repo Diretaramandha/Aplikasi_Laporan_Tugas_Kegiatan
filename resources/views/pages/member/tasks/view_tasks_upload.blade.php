@@ -29,15 +29,11 @@
                                 </div>
                                 <div class="ms-auto d-flex">
                                     <a href="/member/task"
-                                    class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5 "
-                                    data-bs-toggle="tooltip" data-bs-title="Back">
-                                    <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
-                                </a>
-                                <a href="/upload/{{ $id_tasks }}"
-                                    class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5 "
-                                    data-bs-toggle="tooltip" data-bs-title="Upload">
-                                    <i class="fa-solid fa-table" style="font-size: 1rem" ></i>
-                                </a>
+                                        class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2 opacity-5 "
+                                        data-bs-toggle="tooltip" data-bs-title="Back">
+                                        <i class="fa-solid fa-arrow-left" style="font-size: 1rem"></i>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -54,8 +50,8 @@
                                                 Report</th>
                                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                                 Dateline</th>
-                                            {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
-                                                Report</th> --}}
+                                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
+                                                Detail Upload</th>
                                             {{-- <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">
                                                 Upload</th> --}}
                                         </tr>
@@ -76,9 +72,13 @@
                                                 <td class="align-middle text-center">
                                                     <p class="text-sm text-secondary mb-0">{{ $item->duetime }}
                                                 </td>
-                                                {{-- <td class="align-middle text-center">
-                                                    <p class="text-sm text-secondary mb-0">{{ $item->tasks->report->name }}
-                                                </td> --}}
+                                                <td class="align-middle text-center">
+                                                    <a href="/upload/{{ $item->id }}"
+                                                        class="me-2 opacity-5 "
+                                                        data-bs-toggle="tooltip" data-bs-title="Upload">
+                                                        <i class="fa-solid fa-table" style="font-size: 1.5rem"></i>
+                                                    </a>
+                                                </td>
                                                 {{-- <td class="align-middle text-center">
                                                     <a href="/report/upload/{{ $item->id }}"
                                                         class=" me-2 my-2 opacity-5"

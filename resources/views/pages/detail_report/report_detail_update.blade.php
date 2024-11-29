@@ -39,36 +39,39 @@
                         </div>
                     </div>
                     <div class="card-body px-0 py-0">
-                        <form action="/upload/detail-report/{{ $reports->id }}" method="post" enctype="multipart/form-data">
+                        <form action="/upload/detail-report/update/{{ $detail->id }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                {{-- <div class="col-12 px-5 py-2 pt-4">
+                                <div class="col-12 px-5 py-2 pt-4">
                                     <label for="report">Report</label>
                                     <select name="id_report" id="report" class="form-select">
-                                        <option value=""></option>
                                         @foreach ($reports as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ $item->id == $detail->report->id ? 'selected' : '' }}>{{ $item->name }}
+                                            </option>
                                         @endforeach
+
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="col-12 px-5 py-2 pt-4">
                                     <label for="des">Description</label>
                                     <input type="text" name="description" id="des" class="form-control"
-                                        placeholder="Enter description">
+                                        placeholder="Enter description" value="{{ $detail->description }}">
                                 </div>
                                 <div class="col-12 px-5 py-2">
                                     <label for="time">Date & Time</label>
                                     <input type="datetime-local" name="datetime" id="time" class="form-control"
-                                        placeholder="Enter Time">
+                                        value="{{ $detail->datetime}}">
                                 </div>
                                 <div class="col-12 px-5 pt-2">
                                     <label id="linkLabel" for="link">Link</label>
                                     <input type="text" name="link_file" id="link" class="form-control"
-                                        placeholder="Enter Link">
+                                        placeholder="Enter Link" value="{{ $detail->link_file }}">
                                     <button type="button" class="btn btn-dark mt-2" onclick="changeInputType()">Ganti Tipe
                                         Input</button>
                                 </div>
-
+                                <input type="hidden" value="{{ $detail->id_report }}">
                                 <div class="col-12 px-5 py-4">
                                     <input type="submit" value="Upload Report" class="btn btn-dark w-100">
                                 </div>
@@ -92,6 +95,7 @@
                                     linkInput.type = 'text';
                                     linkInput.name = 'link_file';
                                     linkInput.placeholder = 'Enter Link';
+                                    linkInput.value = '{{ $detail->link_file }}';
                                     linkLabel.innerText = 'Link';
                                 }
                             }

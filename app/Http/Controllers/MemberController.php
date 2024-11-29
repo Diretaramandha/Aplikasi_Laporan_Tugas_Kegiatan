@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailReport;
 use App\Models\Member;
 use App\Models\Report;
 use App\Models\Task;
@@ -50,14 +51,24 @@ class MemberController extends Controller
                 $query->where('user_id', $user->id);
             })
             ->get();
-        $data['id_tasks'] = $id_task;
+        // $data['id_report'] = Report::where('tasks_idtask', $id_task)
+        // ->whereHas('tasks.member', function ($query) use ($user) {
+        //     $query->where('user_id', $user->id);
+        // })
+        // ->get();
 
         return view('pages.member.tasks.view_tasks_upload', $data);
     }
-    public function view_member_upload($id_task)
+    public function view_member_upload($id_report)
     {
-        $data['tasks'] = $id_task;
-        return view('pages.member.tasks.view_table_upload',$data);
+        // $task = $id_task ;
+        $users = User::latest()->paginate(10);
+
+
+        $report = Report::find($id_report);
+        $upload = DetailReport::where('id_report', $id_report)->get();
+
+        return view('pages.member.tasks.view_table_upload', compact('upload', 'report'));
     }
 
 
@@ -70,6 +81,12 @@ class MemberController extends Controller
         })->get();
 
         return view("pages.member.update", $data);
+    }
+    public function view_delete_upload(Request $request)
+    {
+        DetailReport::where("id", $request->id_detail)->delete();
+        alert()->success('SuccessAlert', 'Lorem ipsum dolor sit amet.');
+        return redirect()->back();
     }
     public function member_delete($id_member)
     {

@@ -6,6 +6,7 @@ use App\Models\DetailReport;
 use App\Models\Report;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ReportController extends Controller
 {
@@ -69,7 +70,7 @@ class ReportController extends Controller
         ]);
 
         if (!$validate) {
-            toast('Warning Failed create report','warning');
+            toast('Warning Failed create report', 'warning');
 
             return redirect()->back();
         }
@@ -82,7 +83,7 @@ class ReportController extends Controller
         $report->tasks_idtask = $id_task;
         $report->save();
 
-        toast('Success Create Report','success');
+        toast('Success Create Report', 'success');
 
         return redirect('/report/task/' . $id_event . '/' . $id_task);
     }
@@ -94,7 +95,7 @@ class ReportController extends Controller
         ]);
 
         if (!$validate) {
-            toast('Warning Failed Update report','warning');
+            toast('Warning Failed Update report', 'warning');
             return redirect()->back();
         }
 
@@ -105,7 +106,7 @@ class ReportController extends Controller
             'tasks_idtask' => $id_task,
         ]);
 
-        toast('Success Update Report','success');
+        toast('Success Update Report', 'success');
         return redirect('/report/task/' . $id_event . '/' . $id_task);
     }
 
@@ -144,11 +145,28 @@ class ReportController extends Controller
     //     return redirect('/member/task');
     // }
 
-    public function view_upload(Request $request,$id_task){
-        $reports = Report::where('tasks_idtask',$id_task)->get();
+    public function view_upload(Request $request, $id_task)
+    {
+        $reports = Report::find( $id_task );
 
-        $task = Task::find($id_task);
-        return view('pages.detail_report.report_detail',compact('reports','task'));
+        // $task = $id_task;
+
+        // echo json_encode($reports);
+        return view('pages.detail_report.report_detail', compact('reports'));
+    }
+    public function view_upload_update(Request $request, $id_task, $id_detail_report)
+    {
+        $detail = DetailReport::where('id', $id_detail_report)
+            ->with('report')
+            ->first();
+
+        $reports = Report::where('tasks_idtask', $id_task)
+            ->get();
+
+        // $task = Task::find($id_task);
+
+
+        return view('pages.detail_report.report_detail_update', compact('reports', 'detail'));
     }
 
     // public function view_member_tables_upload($id_task){
@@ -157,7 +175,8 @@ class ReportController extends Controller
     //     return view('pages.member.tasks.view_table_upload',$data);
     // }
 
-    public function member_upload(Request $request){
+    public function member_upload(Request $request)
+    {
         $validate = $request->validate([
             'description' => ['required', 'string'],
             'datetime' => ['required'],
@@ -165,11 +184,8 @@ class ReportController extends Controller
             'link_file' => ['nullable', 'string'],
         ]);
 
-        $detailreport = DetailReport::where('id_report', $request->id_report)->first();
 
-        if (!$detailreport) {
-            $detailreport = new DetailReport();
-        }
+        $detailreport = new DetailReport();
 
         $detailreport->description = $request->description;
         $detailreport->datetime = $request->datetime;
@@ -187,7 +203,55 @@ class ReportController extends Controller
         $detailreport->id_report = $request->id_report;
 
         $detailreport->save();
-        toast('Success Upload','success');
-        return redirect('/upload/');
+        toast('Success Upload', 'success');
+        return redirect('/upload/' . $detailreport->id_report);
+    }
+    public function member_upload_update(Request $request)
+    {
+        $validate = $request->validate([
+            'description' => ['required', 'string'],
+            'datetime' => ['required'],
+            'file_upload' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+            'link_file' => ['nullable', 'string'],
+        ]);
+
+        // Find the detail report by ID
+        $detailreport = DetailReport::find($request->id_detail);
+
+        // Update description and datetime
+        $detailreport->description = $request->description;
+        $detailreport->datetime = $request->datetime;
+
+        // Check if there is a new file upload
+        if ($request->hasFile('file_upload')) {
+            // If there is an existing file, delete it from storage
+            if ($detailreport->file_upload) {
+                Storage::delete('file/' . $detailreport->file_upload);
+
+                $filename = uniqid() . '.' . $request->file('file_upload')->getClientOriginalExtension();
+                $request->file('file_upload')->storeAs('file', $filename);
+                $detailreport->file_upload = $filename;
+            }else {
+                $filename = Storage::get('file',$detailreport->upload_file);
+                $detailreport->file_upload = $filename;
+            }
+
+            // Store the new file
+        } else {
+            // If no new file is uploaded, check for link_file
+            if ($request->link_file) {
+                $detailreport->link_file = $request->link_file;
+            }
+        }
+
+        // Update the report ID
+        $detailreport->id_report = $request->id_report;
+
+        // Save the changes
+        $detailreport->save();
+
+        // Show success message and redirect
+        toast('Success Upload', 'success');
+        return redirect('/upload/' . $detailreport->id_report);
     }
 }
